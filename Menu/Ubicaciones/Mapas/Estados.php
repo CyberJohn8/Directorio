@@ -1,18 +1,17 @@
 <?php
-// Fix para InfinityFree
-ini_set("session.save_path", __DIR__ . "/../tmp");
-if (!file_exists(__DIR__ . "/../tmp")) {
-    mkdir(__DIR__ . "/../tmp", 0777, true);
-}
-
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+/**/
+$servername = "sql204.infinityfree.com";
+$username = "if0_39714112";
+$password = "MWgk9nZD6H0RIl";
+$database = "if0_39714112_directorio_asambleas";/*/
 
-$servername = "sql308.infinityfree.com";
-$username = "if0_39414119";
-$password = "U7ML7oxb1B";
-$database = "if0_39414119_geolocalizador";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "directorio";/**/
 
 $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
@@ -406,7 +405,7 @@ $mapa_estados = [
 <!DOCTYPE >
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asambleas en <?php echo htmlspecialchars($estado); ?></title>
@@ -418,110 +417,110 @@ $mapa_estados = [
         /*==================/DISEÑO PARA CELULARES 768PX/==================*/
         /* RESPONSIVE */
         @media (max-width: 768px) {
-        /*==================/MENÚ LATERAL/==================*/
-        .menu-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 55px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between; /* ← Cambiado para mover extremos */    
-            align-items: center;
-            padding: 0 0;
-            z-index: 1001;
+            /*==================/MENÚ LATERAL/==================*/
+            .menu-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 55px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between; /* ← Cambiado para mover extremos */    
+                align-items: center;
+                padding: 0 0;
+                z-index: 1001;
 
-            border-radius: 0 0 20px 20px;
-        }
+                border-radius: 0 0 20px 20px;
+            }
 
-        .icon-btn {
-            width: auto;
-            height: 80%;
-        }
+            .icon-btn {
+                width: auto;
+                height: 80%;
+            }
 
-        .icon-btn img {
-            width: 32px;
-            height: 32px;
-            /*filter: invert(1);/**/
-        }
+            .icon-btn img {
+                width: 32px;
+                height: 32px;
+                /*filter: invert(1);/**/
+            }
 
-        .solo-pc {
-            display: none !important;
-        }
-
-
+            .solo-pc {
+                display: none !important;
+            }
 
 
 
-        /*==================/MENÚ EMERGENTE OCULTO/==================*/
-        /* Panel emergente */
-        .sidebar {
-            left: -300px;
-            width: 250px;
-            height: 100%;
-            background-color: #637983/*transparent/*#263C3EA6*/;
-            color: #EAE4D5;
-            padding: 20px;
-        }
-
-        .sidebar.active {
-            left: 0px; /* aparece justo al lado del menú de íconos */
-        }
-
-        .sidebar h2 {
-            font-family: 'Oleo Script', cursive;
-            color: #EAE4D5;
-            
-            font-weight: normal;
-            font-size: 26px;
-        }
-
-        .sidebar a {
-            color: #EAE4D5;
-            border-radius: 0px;
-            color: #EAE4D5;        
-            font-weight: normal;
-            font-size: 16px;
-
-            border-bottom: 1px solid #263C3E;
-        }
-
-        .sidebar a:hover {
-            background-color: #2a3e42;
-        }
 
 
+            /*==================/MENÚ EMERGENTE OCULTO/==================*/
+            /* Panel emergente */
+            .sidebar {
+                left: -300px;
+                width: 250px;
+                height: 100%;
+                background-color: #637983/*transparent/*#263C3EA6*/;
+                color: #EAE4D5;
+                padding: 20px;
+            }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1002;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
+            .sidebar.active {
+                left: 0px; /* aparece justo al lado del menú de íconos */
+            }
 
-        .overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+            .sidebar h2 {
+                font-family: 'Oleo Script', cursive;
+                color: #EAE4D5;
+                
+                font-weight: normal;
+                font-size: 26px;
+            }
 
-        .sidebar .close-btn {    
-            border-radius: 45px 15px 45px 15px;
-            background-color: #A2B0BE;
-            color: #192E2F;
-        }
+            .sidebar a {
+                color: #EAE4D5;
+                border-radius: 0px;
+                color: #EAE4D5;        
+                font-weight: normal;
+                font-size: 16px;
 
-        .sidebar .close-btn:hover {
-            transform: scale(1.25);
-            background-color: #192E2F;
-            color: #A2B0BE;
-        }
+                border-bottom: 1px solid #263C3E;
+            }
+
+            .sidebar a:hover {
+                background-color: #2a3e42;
+            }
+
+
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 1002;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .sidebar .close-btn {    
+                border-radius: 45px 15px 45px 15px;
+                background-color: #A2B0BE;
+                color: #192E2F;
+            }
+
+            .sidebar .close-btn:hover {
+                transform: scale(1.25);
+                background-color: #192E2F;
+                color: #A2B0BE;
+            }
         }
 
 
@@ -533,111 +532,111 @@ $mapa_estados = [
         /*==================/DISEÑO PARA CELULARES 280PX/==================*/
         /* RESPONSIVE */
         @media (max-width: 280px) {
-        /*==================/MENÚ LATERAL/==================*/
-        /*==================/MENÚ LATERAL/==================*/
-        .menu-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 55px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between; /* ← Cambiado para mover extremos */    
-            align-items: center;
-            padding: 0 0;
-            z-index: 1001;
+            /*==================/MENÚ LATERAL/==================*/
+            /*==================/MENÚ LATERAL/==================*/
+            .menu-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 55px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between; /* ← Cambiado para mover extremos */    
+                align-items: center;
+                padding: 0 0;
+                z-index: 1001;
 
-            border-radius: 0 10px 0 10px;
-        }
+                border-radius: 0 10px 0 10px;
+            }
 
-        .icon-btn {
-            width: auto;
-            height: 80%;
-        }
+            .icon-btn {
+                width: auto;
+                height: 80%;
+            }
 
-        .icon-btn img {
-            width: 32px;
-            height: 32px;
-            /*filter: invert(1);/**/
-        }
+            .icon-btn img {
+                width: 32px;
+                height: 32px;
+                /*filter: invert(1);/**/
+            }
 
-        .solo-pc {
-            display: none !important;
-        }
-
-
+            .solo-pc {
+                display: none !important;
+            }
 
 
 
-        /*==================/MENÚ EMERGENTE OCULTO/==================*/
-        /* Panel emergente */
-        .sidebar {
-            left: -300px;
-            width: 150px;
-            height: 100%;
-            background-color: #637983/*transparent/*#263C3EA6*/;
-            color: #EAE4D5;
-            padding: 20px;
-        }
-
-        .sidebar.active {
-            left: 0px; /* aparece justo al lado del menú de íconos */
-        }
-
-        .sidebar h2 {
-            font-family: 'Oleo Script', cursive;
-            color: #EAE4D5;
-            
-            font-weight: normal;
-            font-size: 26px;
-        }
-
-        .sidebar a {
-            color: #EAE4D5;
-            border-radius: 0px;
-            color: #EAE4D5;        
-            font-weight: normal;
-            font-size: 16px;
-
-            border-bottom: 1px solid #263C3E;
-        }
-
-        .sidebar a:hover {
-            background-color: #2a3e42;
-        }
 
 
+            /*==================/MENÚ EMERGENTE OCULTO/==================*/
+            /* Panel emergente */
+            .sidebar {
+                left: -300px;
+                width: 150px;
+                height: 100%;
+                background-color: #637983/*transparent/*#263C3EA6*/;
+                color: #EAE4D5;
+                padding: 20px;
+            }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1002;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
+            .sidebar.active {
+                left: 0px; /* aparece justo al lado del menú de íconos */
+            }
 
-        .overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+            .sidebar h2 {
+                font-family: 'Oleo Script', cursive;
+                color: #EAE4D5;
+                
+                font-weight: normal;
+                font-size: 26px;
+            }
 
-        .sidebar .close-btn {    
-            border-radius: 45px 15px 45px 15px;
-            background-color: #A2B0BE;
-            color: #192E2F;
-        }
+            .sidebar a {
+                color: #EAE4D5;
+                border-radius: 0px;
+                color: #EAE4D5;        
+                font-weight: normal;
+                font-size: 16px;
 
-        .sidebar .close-btn:hover {
-            transform: scale(1.25);
-            background-color: #192E2F;
-            color: #A2B0BE;
-        }
+                border-bottom: 1px solid #263C3E;
+            }
+
+            .sidebar a:hover {
+                background-color: #2a3e42;
+            }
+
+
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 1002;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .sidebar .close-btn {    
+                border-radius: 45px 15px 45px 15px;
+                background-color: #A2B0BE;
+                color: #192E2F;
+            }
+
+            .sidebar .close-btn:hover {
+                transform: scale(1.25);
+                background-color: #192E2F;
+                color: #A2B0BE;
+            }
         }
 
         
@@ -751,7 +750,7 @@ $mapa_estados = [
             .leyenda-container button {
                 width: 100%;
                 border: none;
-                padding: 10px;
+                padding: 5px;
                 border-radius: 6px;
                 font-size: 14px;
                 text-align: left;
@@ -760,14 +759,55 @@ $mapa_estados = [
             /* MODAL */
             /*Modal de detalles*/
             .modal-content {
+                padding: 5px;
                 width: 90%;
-                max-height: 95%;
-                padding: 10px;
+                max-height: 96%;
+                margin: auto;
+                border-radius: 12px;
+                position: relative;
+            }
 
-                
+            .modal-content h3 {
+                font-size: 20px;
+            }
+
+            .modal-content p, li {
                 font-size: 14px;
-                margin: 0% auto;
-                margin-top: 2%
+                margin: 5px;
+            }
+
+            .modal-content ul {
+                list-style-type: none; /* Esto elimina los puntos/viñetas */
+                /*padding: 0;           /* Opcional: Elimina el padding predeterminado */
+                /*margin: 0;            /* Opcional: Elimina el margen predeterminado */
+            }
+
+            .btn-mapa {
+                display: inline-block;
+                padding: 5px 8px;
+                text-decoration: none;
+                font-weight: bold;
+                border-radius: 8px;
+            }
+
+
+            /* Estilo para las obras con scroll */
+            .obras-scroll {
+                margin-top: 2px;
+                padding: 6px 10px;
+            }
+
+            /* Lista de obras */
+            .obras-scroll ul {
+                list-style-type: disc;
+                margin: 6px 0 6px 20px;
+                padding: 0;
+            }
+
+            .obras-scroll li {
+                margin-bottom: 2px;
+                line-height: 1.4;
+                text-align: left;
             }
         }
 
@@ -1750,27 +1790,27 @@ $mapa_estados = [
         <button class="icon-btn btn-menu" onclick="toggleSidebarMenu()" title="Menú">
             <img src="iconos/Menu.png" alt="Menú">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" title="Inicio">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/index.php'" title="Inicio">
             <img src="iconos/Inicio.png" alt="Inicio">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php'" title="Ubicación">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Submenu.php'" title="Ubicación">
             <img src="iconos/ubicaciones.png" alt="Ubicación">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php'" title="Eventos">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Eventos/index.php'" title="Eventos">
             <img src="iconos/eventos.png" alt="Eventos">
         </button>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php'" title="Donaciones">
+            <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Donaciones/index.php'" title="Donaciones">
                 <img src="iconos/donation.png" alt="Donaciones">
             </button>
         <?php endif; ?>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php'" title="Material Literario">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Material/index.php'" title="Material Literario">
             <img src="iconos/material.png" alt="Material Literario">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php'" title="Biblia">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/LiteraturaBiblica/index.php'" title="Biblia">
             <img src="iconos/Biblia.png" alt="Estudio Bíblico">
         </button>
-        <button class="icon-btn btn-sesion" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/logout.php'" title="Cerrar Sesión">
+        <button class="icon-btn btn-sesion" onclick="location.href='https://pwagacandsv.rf.gd/Menu/logout.php'" title="Cerrar Sesión">
             <img src="iconos/Sesion.png" alt="Cerrar Sesión">
         </button>
     </nav>
@@ -1779,20 +1819,20 @@ $mapa_estados = [
     <!-- Menú emergente (sidebar) para celular -->
     <div class="sidebar mobile-only" id="sidebarMenu">
         <h2>Menú</h2>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/index.php">Inicio</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php">Ubicación</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php">Eventos</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/index.php">Inicio</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Submenu.php">Ubicación</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Eventos/index.php">Eventos</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php">Donaciones</a>
+            <a href="https://pwagacandsv.rf.gd/Menu/Donaciones/index.php">Donaciones</a>
         <?php endif; ?>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php">Material Literario</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Material/index.php">Material Literario</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Cuenta/index.php">Gestionar Sesión</a>
+            <a href="https://pwagacandsv.rf.gd/Cuenta/index.php">Gestionar Sesión</a>
         <?php endif; ?>
         
 
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Copiryt.php">Acerca de</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Copiryt.php">Acerca de</a>
 
         <button class="close-btn" onclick="toggleSidebarMenu()">Cerrar</button>
     </div>
@@ -1907,33 +1947,41 @@ $mapa_estados = [
     </div>
 
     <!-- MODAL -->
-    <!-- Modal para mostrar los detalles -->
     <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarModal()">&times;</span>
-            <h3>Detalles de la Asamblea</h3>
-            <p><strong>Asamblea:</strong> <span id="det-asamblea"></span></p>
-            <p><strong>Número:</strong> <span id="det-numero"></span></p>
-            <p><strong>Fecha de Fundación:</strong> <span id="det-Fehca_Fundacion"></span></p>
-            <p><strong>Ciudad:</strong> <span id="det-ciudad"></span></p>
-            <p><strong>Estado:</strong> <span id="det-estado"></span></p>
-            <p><strong>Dirección:</strong> <span id="det-direccion"></span></p>
-            <ul>
-                <li><strong>Domingo:</strong> <span id="det-domingo"></span></li>
-                <li><strong>Lunes:</strong> <span id="det-lunes"></span></li>
-                <li><strong>Martes:</strong> <span id="det-martes"></span></li>
-                <li><strong>Miércoles:</strong> <span id="det-miercoles"></span></li>
-                <li><strong>Jueves:</strong> <span id="det-jueves"></span></li>
-                <li><strong>Viernes:</strong> <span id="det-viernes"></span></li>
-                <li><strong>Sábado:</strong> <span id="det-sabado"></span></li>
-            </ul>
-            <p><strong>Obras:</strong> <span id="det-obras"></span></p>
-            <p><strong>Google Maps:</strong> 
-                <a id="det-mapa" href="#" target="_blank" class="btn-mapa">
-                    <i class="fas fa-map-marker-alt"></i> Ver ubicación
-                </a>
-            </p>
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">&times;</span>
+        <h3>Detalles de la Asamblea</h3>
+
+        <p><strong>Asamblea:</strong> <span id="det-asamblea"></span></p>
+        <p><strong>Número:</strong> <span id="det-numero"></span></p>
+        <p><strong>Fecha de Fundación:</strong> <span id="det-Fehca_Fundacion"></span></p>
+        <p><strong>Ciudad:</strong> <span id="det-ciudad"></span></p>
+        <p><strong>Estado:</strong> <span id="det-estado"></span></p>
+        <p><strong>Dirección:</strong> <span id="det-direccion"></span></p>
+
+        <ul id="lista-horarios">
+            <li><strong>Domingo:</strong> <span id="det-domingo"></span></li>
+            <li><strong>Lunes:</strong> <span id="det-lunes"></span></li>
+            <li><strong>Martes:</strong> <span id="det-martes"></span></li>
+            <li><strong>Miércoles:</strong> <span id="det-miercoles"></span></li>
+            <li><strong>Jueves:</strong> <span id="det-jueves"></span></li>
+            <li><strong>Viernes:</strong> <span id="det-viernes"></span></li>
+            <li><strong>Sábado:</strong> <span id="det-sabado"></span></li>
+        </ul>
+
+        <div id="wrap-obras">
+        <p><strong>Obras:</strong></p>
+        <div class="obras-scroll">
+            <ul id="det-obras"></ul>
         </div>
+        </div>
+
+        <p><strong>Google Maps:</strong>
+        <a id="det-mapa" href="#" target="_blank" class="btn-mapa">
+            <i class="fas fa-map-marker-alt"></i> Ver ubicación
+        </a>
+        </p>
+    </div>
     </div>
 
     <script>
@@ -1946,59 +1994,151 @@ $mapa_estados = [
             echo json_encode($iglesiasPorAsamblea, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         ?>;
 
-        console.log("Datos de iglesias cargados:", iglesiasData); // Agregado para depuración
+        function esSinReunion(valor) {
+        if (valor == null) return true;
+        let s = String(valor)
+            .replace(/<[^>]*>/g, "")
+            .replace(/\u00A0/g, " ")
+            .trim()
+            .toLowerCase()
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        s = s.replace(/^[\s\-–—_.:;]+|[\s\-–—_.:;]+$/g, "").replace(/\s+/g, " ").trim();
+        const VACIOS = new Set(["", "sin reuniones", "sin reunion", "no hay", "no hay reuniones", "no aplica", "n/a", "na", "ninguna", "sin actividades"]);
+        return VACIOS.has(s);
+        }
 
         function mostrarDetalles(data) {
-            document.getElementById("det-asamblea").textContent = data.asamblea;
-            document.getElementById("det-numero").textContent = data.numero;
-            document.getElementById("det-Fehca_Fundacion").textContent = data.Fehca_Fundacion;
-            document.getElementById("det-ciudad").textContent = data.ciudad;
-            document.getElementById("det-estado").textContent = data.estado;
-            document.getElementById("det-direccion").textContent = data.direccion;
-            document.getElementById("det-domingo").textContent = data.domingo;
-            document.getElementById("det-lunes").textContent = data.lunes;
-            document.getElementById("det-martes").textContent = data.martes;
-            document.getElementById("det-miercoles").textContent = data.miercoles;
-            document.getElementById("det-jueves").textContent = data.jueves;
-            document.getElementById("det-viernes").textContent = data.viernes;
-            document.getElementById("det-sabado").textContent = data.sabado;
-            document.getElementById("det-obras").textContent = data.obras;
-            document.getElementById("det-mapa").href = data.GoogleMaps || "#";
+        document.getElementById("det-asamblea").textContent = data.asamblea || "";
+        document.getElementById("det-numero").textContent = data.numero || "";
+        document.getElementById("det-Fehca_Fundacion").textContent = data.Fehca_Fundacion || "";
+        document.getElementById("det-ciudad").textContent = data.ciudad || "";
+        document.getElementById("det-estado").textContent = data.estado || "";
+        document.getElementById("det-direccion").textContent = data.direccion || "";
 
-            document.getElementById("modal").style.display = "block";
+        // Horarios
+        const dias = ["domingo","lunes","martes","miercoles","jueves","viernes","sabado"];
+        dias.forEach(dia => {
+            const span = document.getElementById(`det-${dia}`);
+            if (!span) return;
+            const li = span.closest("li");
+            const valor = data[dia];
+
+            if (esSinReunion(valor)) {
+            span.textContent = "";
+            if (li) li.style.display = "none";
+            } else {
+            span.textContent = String(valor).trim();
+            if (li) li.style.display = "list-item";
+            }
+        });
+
+        // Ocultar la lista si no hay días visibles
+        const ul = document.getElementById("lista-horarios");
+        if (ul) {
+            const visible = Array.from(ul.querySelectorAll("li")).some(li => li.style.display !== "none");
+            ul.style.display = visible ? "block" : "none";
+        }
+
+        // Mostrar obras con formato de lista y scroll
+        const obrasContainer = document.getElementById("det-obras");
+        const wrapObras = document.getElementById("wrap-obras");
+        obrasContainer.innerHTML = "";
+
+        if (data.obras && data.obras.trim() !== "" && data.obras.toLowerCase().trim() !== "sin obras que atender") {
+            const obrasList = data.obras.trim().split(/\r?\n+/).filter(line => line.trim() !== "");
+            if (obrasList.length > 0) {
+            obrasList.forEach(linea => {
+                const li = document.createElement("li");
+                li.textContent = linea.trim();
+                obrasContainer.appendChild(li);
+            });
+            wrapObras.style.display = "block";
+            } else {
+            wrapObras.style.display = "none";
+            }
+        } else {
+            wrapObras.style.display = "none";
+        }
+
+        // Google Maps
+        const mapaLink = document.getElementById("det-mapa");
+        if (data.GoogleMaps && data.GoogleMaps.trim() !== "") {
+            mapaLink.href = data.GoogleMaps.trim();
+        } else {
+            mapaLink.href = "#";
+        }
+
+        document.getElementById("modal").style.display = "block";
         }
 
         function cerrarModal() {
-            document.getElementById("modal").style.display = "none";
+        document.getElementById("modal").style.display = "none";
         }
 
         function mostrarDetallesPorAsamblea(asamblea) {
-            const clave = asamblea.trim().toUpperCase();
-            const data = iglesiasData[clave];
-            if (data) {
-                mostrarDetalles(data);
-            } else {
-                console.error("No se encontró información para:", clave);
-                alert("No se encontró información para la asamblea: " + asamblea);
-            }
+        const clave = asamblea.trim().toUpperCase();
+        const data = iglesiasData[clave];
+        if (data) {
+            mostrarDetalles(data);
+        } else {
+            console.error("No se encontró información para:", clave);
+            alert("No se encontró información para la asamblea: " + asamblea);
+        }
         }
 
-
-
-        /*==========Solo en caso de no tener Enlace GoogleMaps==========*/
         document.addEventListener("DOMContentLoaded", function () {
-            const mapaLink = document.getElementById("det-mapa");
-
-            mapaLink.addEventListener("click", function (e) {
-                const url = mapaLink.getAttribute("href");
-
-                if (!url || url === "#" || url.trim() === "") {
-                    e.preventDefault(); // Previene que se abra el enlace vacío
-                    alert("Enlace no disponible por ahora.\n\nSi lo tiene, favor hacerlo llegar al correo:\n\ndirectorioasambleas@gmail.com\n\nIndicando claramente el nombre de la asamblea y el estado en el que se encuentra.\n\nGracias de antemano.");
-                }
-            });
+        const mapaLink = document.getElementById("det-mapa");
+        mapaLink.addEventListener("click", function (e) {
+            const url = mapaLink.getAttribute("href");
+            if (!url || url === "#" || url.trim() === "") {
+            e.preventDefault();
+            alert("Enlace no disponible por ahora.\n\nSi lo tiene, favor hacerlo llegar al correo:\n\ndirectorioasambleas@gmail.com\n\nIndicando claramente el nombre de la asamblea y el estado en el que se encuentra.\n\nGracias de antemano.");
+            }
+        });
         });
     </script>
+
+    <style>
+        /* Estilo para las obras con scroll */
+        .obras-scroll {
+            max-height: 100px;        /* altura máxima antes de activar scroll */
+            overflow-y: auto;         /* scroll vertical */
+            margin-top: 6px;
+            /*border: 1px solid #ccc;/** */
+            border-radius: 6px;
+            background: transparent;
+            padding: 6px 10px;
+        }
+
+        /* Lista de obras */
+        .obras-scroll ul {
+            list-style-type: disc;
+            margin: 6px 0 6px 20px;
+            padding: 0;
+        }
+
+        .obras-scroll li {
+            margin-bottom: 5px;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        /* Scrollbar personalizada */
+        .obras-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .obras-scroll::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
+        }
+
+        .obras-scroll::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+    </style>
+
 
 
 

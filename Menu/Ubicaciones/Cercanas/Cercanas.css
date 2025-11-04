@@ -489,7 +489,7 @@ td.espacio {border-bottom: 1px solid #637983;}
 
 .modal-contenido {
     background-color: #EAE4D5;
-    color: #637983;
+    color: #192E2F;
     padding: 20px 15px;
     border-radius: 16px;
     max-width: 600px;
@@ -703,8 +703,8 @@ td.espacio {border-bottom: 1px solid #637983;}
 
     /*Modal de detalles*/
     .modal-contenido {
-        width: 90%;
-        max-height: 90%;
+        width: 80%;
+        height: 90%;
         padding: 10px;
 
         

@@ -5,10 +5,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Conexión a la base de datos
-$servername = "sql308.infinityfree.com";
-$username = "if0_39414119";
-$password = "U7ML7oxb1B";
-$database = "if0_39414119_geolocalizador";
+$servername = "sql204.infinityfree.com";
+$username = "if0_39714112";
+$password = "MWgk9nZD6H0RIl";
+$database = "if0_39714112_directorio_asambleas";/*/ 
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "directorio";/**/
 
 $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {

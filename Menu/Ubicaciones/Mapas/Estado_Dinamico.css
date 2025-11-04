@@ -783,11 +783,12 @@ select, input[type="text"] {
 
 .modal-content {
   background-color: #EAE4D5;
-  color: #637983;
-  padding: 20px;
+  color: #34495e;
+  padding: 10px;
   width: 90%;
   max-width: 600px;
-  margin: 1% auto;
+  max-height: 90%;
+  margin: auto;
   border-radius: 12px;
   position: relative;
   font-family: 'Sansation', sans-serif;
@@ -799,7 +800,7 @@ select, input[type="text"] {
   
   font-weight: normal;
   font-size: 28px;
-  color: #EAE4D5;
+  color: #34495e;
 }
 
 .modal-content ul {

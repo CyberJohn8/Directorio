@@ -1,5 +1,7 @@
 <?php
-$conn = new mysqli("sql308.infinityfree.com", "if0_39414119", "U7ML7oxb1B", "if0_39414119_geolocalizador");
+//$conn = new mysqli("localhost", "root", "", "directorio");
+
+$conn = new mysqli("sql204.infinityfree.com", "if0_39714112", "MWgk9nZD6H0RIl", "if0_39714112_directorio_asambleas");
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
@@ -7,17 +9,17 @@ if ($conn->connect_error) {
 ?>
 
 <?php
-// Fix para InfinityFree
-ini_set("session.save_path", __DIR__ . "/../tmp");
-if (!file_exists(__DIR__ . "/../tmp")) {
-    mkdir(__DIR__ . "/../tmp", 0777, true);
-}
-
 // Conexión a la base de datos
-$servername = "sql308.infinityfree.com";
-$username = "if0_39414119";
-$password = "U7ML7oxb1B";
-$database = "if0_39414119_geolocalizador";
+$servername = "sql204.infinityfree.com";
+$username = "if0_39714112";
+$password = "MWgk9nZD6H0RIl";
+$database = "if0_39714112_directorio_asambleas";/**/
+
+/*/
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "geolocalizador";/**/
 
 $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
@@ -35,7 +37,7 @@ ini_set('display_errors', 1);
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Iglesias</title>
@@ -126,27 +128,27 @@ ini_set('display_errors', 1);
         <button class="icon-btn btn-menu" onclick="toggleSidebarMenu()" title="Menú">
             <img src="iconos/Menu.png" alt="Menú">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" title="Inicio">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/index.php'" title="Inicio">
             <img src="iconos/Inicio.png" alt="Inicio">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php'" title="Ubicación">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Submenu.php'" title="Ubicación">
             <img src="iconos/ubicaciones.png" alt="Ubicación">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php'" title="Eventos">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Eventos/index.php'" title="Eventos">
             <img src="iconos/eventos.png" alt="Eventos">
         </button>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php'" title="Donaciones">
+            <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Donaciones/index.php'" title="Donaciones">
                 <img src="iconos/donation.png" alt="Donaciones">
             </button>
         <?php endif; ?>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php'" title="Material Literario">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Material/index.php'" title="Material Literario">
             <img src="iconos/material.png" alt="Material Literario">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php'" title="Biblia">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/LiteraturaBiblica/index.php'" title="Biblia">
             <img src="iconos/Biblia.png" alt="Estudio Bíblico">
         </button>
-        <button class="icon-btn btn-sesion" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/logout.php'" title="Cerrar Sesión">
+        <button class="icon-btn btn-sesion" onclick="location.href='https://pwagacandsv.rf.gd/Menu/logout.php'" title="Cerrar Sesión">
             <img src="iconos/Sesion.png" alt="Cerrar Sesión">
         </button>
     </nav>
@@ -155,20 +157,20 @@ ini_set('display_errors', 1);
     <!-- Menú emergente (sidebar) para celular -->
     <div class="sidebar mobile-only" id="sidebarMenu">
         <h2>Menú</h2>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/index.php">Inicio</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php">Ubicación</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php">Eventos</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/index.php">Inicio</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Submenu.php">Ubicación</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Eventos/index.php">Eventos</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php">Donaciones</a>
+            <a href="https://pwagacandsv.rf.gd/Menu/Donaciones/index.php">Donaciones</a>
         <?php endif; ?>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php">Material Literario</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Material/index.php">Material Literario</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Cuenta/index.php">Gestionar Sesión</a>
+            <a href="https://pwagacandsv.rf.gd/Cuenta/index.php">Gestionar Sesión</a>
         <?php endif; ?>
         
 
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Copiryt.php">Acerca de</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Copiryt.php">Acerca de</a>
 
         <button class="close-btn" onclick="toggleSidebarMenu()">Cerrar</button>
     </div>
@@ -189,7 +191,7 @@ ini_set('display_errors', 1);
 
 <div class="contento">
     <header>
-        <button onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php'" class="return-button" title="Volver"></button>
+        <button onclick="location.href='https://pwagacandsv.rf.gd/Menu/Submenu.php'" class="return-button" title="Volver"></button>
         <h1>Asambleas Congregadas al Nombre de Señor en Venezuela</h1>
     </header>
 
@@ -506,23 +508,27 @@ ini_set('display_errors', 1);
     <div class="modal-content">
         <span class="close" onclick="cerrarModal()">&times;</span>
         <h3>Detalles de la Asamblea</h3>
-        <p><strong>Asamblea:</strong> <span id="det-asamblea"></span></p>
-        <p><strong>Número:</strong> <span id="det-numero"></span></p>
-        <p><strong>Fecha de Fundación:</strong> <span id="det-Fehca_Fundacion"></span></p>
-        <p><strong>Ciudad:</strong> <span id="det-ciudad"></span></p>
-        <p><strong>Estado:</strong> <span id="det-estado"></span></p>
-        <p><strong>Dirección:</strong> <span id="det-direccion"></span></p>
-        <ul>
-            <li><strong>Domingo:</strong> <span id="det-domingo"></span></li>
-            <li><strong>Lunes:</strong> <span id="det-lunes"></span></li>
-            <li><strong>Martes:</strong> <span id="det-martes"></span></li>
-            <li><strong>Miércoles:</strong> <span id="det-miercoles"></span></li>
-            <li><strong>Jueves:</strong> <span id="det-jueves"></span></li>
-            <li><strong>Viernes:</strong> <span id="det-viernes"></span></li>
-            <li><strong>Sábado:</strong> <span id="det-sabado"></span></li>
+
+        <p id="wrap-asamblea"><strong>Asamblea:</strong> <span id="det-asamblea"></span></p>
+        <p id="wrap-numero"><strong>Número:</strong> <span id="det-numero"></span></p>
+        <p id="wrap-fecha"><strong>Fecha de Fundación:</strong> <span id="det-Fehca_Fundacion"></span></p>
+        <p id="wrap-ciudad"><strong>Ciudad:</strong> <span id="det-ciudad"></span></p>
+        <p id="wrap-estado"><strong>Estado:</strong> <span id="det-estado"></span></p>
+        <p id="wrap-direccion"><strong>Dirección:</strong> <span id="det-direccion"></span></p>
+
+        <ul id="wrap-horarios">
+            <li id="wrap-domingo"><strong>Domingo:</strong> <span id="det-domingo"></span></li>
+            <li id="wrap-lunes"><strong>Lunes:</strong> <span id="det-lunes"></span></li>
+            <li id="wrap-martes"><strong>Martes:</strong> <span id="det-martes"></span></li>
+            <li id="wrap-miercoles"><strong>Miércoles:</strong> <span id="det-miercoles"></span></li>
+            <li id="wrap-jueves"><strong>Jueves:</strong> <span id="det-jueves"></span></li>
+            <li id="wrap-viernes"><strong>Viernes:</strong> <span id="det-viernes"></span></li>
+            <li id="wrap-sabado"><strong>Sábado:</strong> <span id="det-sabado"></span></li>
         </ul>
-        <p><strong>Obras:</strong> <span id="det-obras"></span></p>
-        <p><strong>Google Maps:</strong> 
+
+        <p id="wrap-obras"><strong>Obras:</strong> <span id="det-obras"></span></p>
+
+        <p id="wrap-mapa"><strong>Google Maps:</strong> 
             <a id="det-mapa" href="#" target="_blank" class="btn-mapa">
                 <i class="fas fa-map-marker-alt"></i> Ver ubicación
             </a>
@@ -530,22 +536,183 @@ ini_set('display_errors', 1);
     </div>
 </div>
 
+<style>
+    #det-obras ul {
+        list-style-type: disc;
+        margin: 5px 0 5px 20px;
+        padding: 0;
+    }
+
+    #det-obras li {
+        margin-bottom: 4px;
+        text-align: left;
+    }
+
+    /* Estilo del contenedor de obras con scroll */
+    .obras-scroll {
+        max-height: 100px;       /* ajusta según el tamaño del modal */
+        overflow-y: auto;         /* activa el scroll vertical */
+        padding-right: 8px;
+        margin-top: 5px;
+        /*border: 1px solid #ccc;   /* opcional, para delimitar el área */
+        border-radius: 6px;
+        background: transparent;      /* color suave de fondo */
+    }
+
+    /* Lista interna de obras */
+    .obras-scroll ul {
+        list-style-type: disc;
+        margin: 8px 0 8px 20px;
+        padding: 0;
+    }
+
+    .obras-scroll li {
+        margin-bottom: 5px;
+        line-height: 1.4;
+        text-align: left;
+        word-wrap: break-word;
+    }
+
+    /* Scrollbar personalizada (opcional) */
+    .obras-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .obras-scroll::-webkit-scrollbar-thumb {
+        background: #aaa;
+        border-radius: 10px;
+    }
+
+    .obras-scroll::-webkit-scrollbar-thumb:hover {
+        background: #888;
+    }
+
+
+</style>
 
 <script>
-    /*==========Solo en caso de no tener Enlace GoogleMaps==========*/
-        document.addEventListener("DOMContentLoaded", function () {
-            const mapaLink = document.getElementById("det-mapa");
+    // Función para mostrar u ocultar un campo según su valor
+    function toggleCampo(wrapperId, valor, excepciones = []) {
+        const wrap = document.getElementById(wrapperId);
+        const span = wrap ? wrap.querySelector("span, a") : null;
 
-            mapaLink.addEventListener("click", function (e) {
-                const url = mapaLink.getAttribute("href");
+        if (!wrap || !span) return;
+
+        const limpio = (valor || "").trim();
+        const normalizado = limpio.toLowerCase();
+        const excepcionesNormalizadas = excepciones.map(e => e.trim().toLowerCase());
+
+        if (!limpio || excepcionesNormalizadas.includes(normalizado)) {
+            wrap.style.display = "none";
+        } else {
+            span.textContent = limpio;
+            wrap.style.display = "block";
+        }
+    }
+
+    // Función para mostrar el modal de detalles
+    function mostrarDetalles(iglesia) {
+        const modal = document.getElementById("modal");
+
+        // Datos principales
+        toggleCampo("wrap-asamblea", iglesia.asamblea);
+        toggleCampo("wrap-numero", iglesia.numero);
+        toggleCampo("wrap-fecha", iglesia.Fehca_Fundacion);
+        toggleCampo("wrap-ciudad", iglesia.ciudad);
+        toggleCampo("wrap-estado", iglesia.estado);
+        toggleCampo("wrap-direccion", iglesia.direccion);
+
+        // Horarios (ocultar si dice "Sin reuniones")
+        toggleCampo("wrap-domingo", iglesia.domingo, ["Sin reuniones", "Sin reuniones."]);
+        toggleCampo("wrap-lunes", iglesia.lunes, ["Sin reuniones", "Sin reuniones."]);
+        toggleCampo("wrap-martes", iglesia.martes, ["Sin reuniones", "Sin reuniones."]);
+        toggleCampo("wrap-miercoles", iglesia.miercoles, ["Sin reuniones", "Sin reuniones."]);
+        toggleCampo("wrap-jueves", iglesia.jueves, ["Sin reuniones", "Sin reuniones."]);
+        toggleCampo("wrap-viernes", iglesia.viernes, ["Sin reuniones", "Sin reuniones."]);
+        toggleCampo("wrap-sabado", iglesia.sabado, ["Sin reuniones", "Sin reuniones."]);
+
+        // Obras
+        // Obras — mostrar con formato de lista y scroll si hay muchas
+        const wrapObras = document.getElementById("wrap-obras");
+        const spanObras = document.getElementById("det-obras");
+
+        if (iglesia.obras && iglesia.obras.trim() !== "" && iglesia.obras.toLowerCase().trim() !== "sin obras que atender") {
+            const obrasLimpias = iglesia.obras.trim()
+                .split(/\r?\n+/) // separar por saltos de línea
+                .filter(linea => linea.trim() !== ""); // eliminar vacíos
+
+            if (obrasLimpias.length > 0) {
+                let listaHTML = `
+                    <div class="obras-scroll">
+                        <ul>
+                `;
+                obrasLimpias.forEach(linea => {
+                    listaHTML += `<li>${linea.trim()}</li>`;
+                });
+                listaHTML += `
+                        </ul>
+                    </div>
+                `;
+                spanObras.innerHTML = listaHTML;
+                wrapObras.style.display = "block";
+            } else {
+                wrapObras.style.display = "none";
+            }
+        } else {
+            wrapObras.style.display = "none";
+        }
+
+
+
+        // Google Maps (manejo especial con <a>)
+        const wrapMapa = document.getElementById("wrap-mapa");
+        const linkMapa = document.getElementById("det-mapa");
+
+        if (iglesia.GoogleMaps && iglesia.GoogleMaps.trim() !== "") {
+            linkMapa.setAttribute("data-url", iglesia.GoogleMaps.trim());
+            wrapMapa.style.display = "block";
+        } else {
+            wrapMapa.style.display = "none";
+        }
+
+        modal.style.display = "flex";
+    }
+
+    // Función para cerrar el modal
+    function cerrarModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+
+    // Cerrar modal si se hace clic fuera del contenido
+    window.addEventListener("click", function (event) {
+        const modal = document.getElementById("modal");
+        if (event.target === modal) {
+            cerrarModal();
+        }
+    });
+
+    /*========== Solo en caso de no tener Enlace GoogleMaps ==========*/
+    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("click", function (e) {
+            if (e.target && e.target.id === "det-mapa") {
+                const url = e.target.getAttribute("data-url");
 
                 if (!url || url === "#" || url.trim() === "") {
-                    e.preventDefault(); // Previene que se abra el enlace vacío
+                    e.preventDefault();
                     alert("Enlace no disponible por ahora.\n\nSi lo tiene, favor hacerlo llegar al correo:\n\ndirectorioasambleas@gmail.com\n\nIndicando claramente el nombre de la asamblea y el estado en el que se encuentra.\n\nGracias de antemano.");
+                } else {
+                    e.preventDefault();
+                    window.open(url, '_blank');
                 }
-            });
+            }
         });
+    });
 </script>
+
+
+
+
+
 </body>
 </html>
 <?php $conn->close(); ?>

@@ -1,10 +1,4 @@
 <?php
-// Fix para InfinityFree
-ini_set("session.save_path", __DIR__ . "/../tmp");
-if (!file_exists(__DIR__ . "/../tmp")) {
-    mkdir(__DIR__ . "/../tmp", 0777, true);
-}
-
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -99,7 +93,7 @@ $mapa_ciudades = [
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <title><?= htmlspecialchars(implode(', ', $ciudades)) ?> - Iglesias</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -202,27 +196,27 @@ $mapa_ciudades = [
         <button class="icon-btn btn-menu" onclick="toggleSidebarMenu()" title="Menú">
             <img src="iconos/Menu.png" alt="Menú">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" title="Inicio">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/index.php'" title="Inicio">
             <img src="iconos/Inicio.png" alt="Inicio">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php'" title="Ubicación">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Submenu.php'" title="Ubicación">
             <img src="iconos/ubicaciones.png" alt="Ubicación">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php'" title="Eventos">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Eventos/index.php'" title="Eventos">
             <img src="iconos/eventos.png" alt="Eventos">
         </button>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php'" title="Donaciones">
+            <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Donaciones/index.php'" title="Donaciones">
                 <img src="iconos/donation.png" alt="Donaciones">
             </button>
         <?php endif; ?>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php'" title="Material Literario">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/Material/index.php'" title="Material Literario">
             <img src="iconos/material.png" alt="Material Literario">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php'" title="Biblia">
+        <button class="icon-btn solo-pc" onclick="location.href='https://pwagacandsv.rf.gd/Menu/LiteraturaBiblica/index.php'" title="Biblia">
             <img src="iconos/Biblia.png" alt="Estudio Bíblico">
         </button>
-        <button class="icon-btn btn-sesion" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/logout.php'" title="Cerrar Sesión">
+        <button class="icon-btn btn-sesion" onclick="location.href='https://pwagacandsv.rf.gd/Menu/logout.php'" title="Cerrar Sesión">
             <img src="iconos/Sesion.png" alt="Cerrar Sesión">
         </button>
     </nav>
@@ -231,20 +225,20 @@ $mapa_ciudades = [
     <!-- Menú emergente (sidebar) para celular -->
     <div class="sidebar mobile-only" id="sidebarMenu">
         <h2>Menú</h2>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/index.php">Inicio</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php">Ubicación</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php">Eventos</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/index.php">Inicio</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Submenu.php">Ubicación</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Eventos/index.php">Eventos</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php">Donaciones</a>
+            <a href="https://pwagacandsv.rf.gd/Menu/Donaciones/index.php">Donaciones</a>
         <?php endif; ?>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php">Material Literario</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Material/index.php">Material Literario</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Cuenta/index.php">Gestionar Sesión</a>
+            <a href="https://pwagacandsv.rf.gd/Cuenta/index.php">Gestionar Sesión</a>
         <?php endif; ?>
         
 
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Copiryt.php">Acerca de</a>
+        <a href="https://pwagacandsv.rf.gd/Menu/Copiryt.php">Acerca de</a>
 
         <button class="close-btn" onclick="toggleSidebarMenu()">Cerrar</button>
     </div>
@@ -272,13 +266,13 @@ $mapa_ciudades = [
 
 
         <?php
-        // Mostrar cada mapa una sola vez, incluso si hay varias ciudades relacionadas
-        $ciudades_mostradas = [];
+            // Mostrar cada mapa una sola vez, incluso si hay varias ciudades relacionadas
+            $ciudades_mostradas = [];
 
-        foreach ($ciudades as $ciudadItem) {
-            foreach ($mapa_ciudades as $ciudadMapa => $datosMapa) {
-                if (stripos($ciudadItem, $ciudadMapa) !== false && !in_array($ciudadMapa, $ciudades_mostradas)) {
-                    $ciudades_mostradas[] = $ciudadMapa;
+            foreach ($ciudades as $ciudadItem) {
+                foreach ($mapa_ciudades as $ciudadMapa => $datosMapa) {
+                    if (stripos($ciudadItem, $ciudadMapa) !== false && !in_array($ciudadMapa, $ciudades_mostradas)) {
+                        $ciudades_mostradas[] = $ciudadMapa;
         ?>
                     <div class="mapa-contenedor-con-leyenda">
                         <div class="mapa-container">
@@ -315,92 +309,218 @@ $mapa_ciudades = [
 
     <!-- MODAL DETALLES -->
     <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarModal()">&times;</span>
-            <h3>Detalles de la Asamblea</h3>
-            <p><strong>Asamblea:</strong> <span id="det-asamblea"></span></p>
-            <p><strong>Número:</strong> <span id="det-numero"></span></p>
-            <p><strong>Fecha de Fundación:</strong> <span id="det-Fehca_Fundacion"></span></p>
-            <p><strong>Ciudad:</strong> <span id="det-ciudad"></span></p>
-            <p><strong>Estado:</strong> <span id="det-estado"></span></p>
-            <p><strong>Dirección:</strong> <span id="det-direccion"></span></p>
-            <ul>
-                <li><strong>Domingo:</strong> <span id="det-domingo"></span></li>
-                <li><strong>Lunes:</strong> <span id="det-lunes"></span></li>
-                <li><strong>Martes:</strong> <span id="det-martes"></span></li>
-                <li><strong>Miércoles:</strong> <span id="det-miercoles"></span></li>
-                <li><strong>Jueves:</strong> <span id="det-jueves"></span></li>
-                <li><strong>Viernes:</strong> <span id="det-viernes"></span></li>
-                <li><strong>Sábado:</strong> <span id="det-sabado"></span></li>
-            </ul>
-            <p><strong>Obras:</strong> <span id="det-obras"></span></p>
-            <p><strong>Google Maps:</strong> 
-                <a id="det-mapa" href="#" target="_blank" class="btn-mapa-enlace">
-                    <i class="fas fa-map-marker-alt"></i> Ver ubicación
-                </a>
-            </p>
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">&times;</span>
+        <h3>Detalles de la Asamblea</h3>
+
+        <p><strong>Asamblea:</strong> <span id="det-asamblea"></span></p>
+        <p><strong>Número:</strong> <span id="det-numero"></span></p>
+        <p><strong>Fecha de Fundación:</strong> <span id="det-Fehca_Fundacion"></span></p>
+        <p><strong>Ciudad:</strong> <span id="det-ciudad"></span></p>
+        <p><strong>Estado:</strong> <span id="det-estado"></span></p>
+        <p><strong>Dirección:</strong> <span id="det-direccion"></span></p>
+
+        <ul id="lista-horarios">
+        <li><strong>Domingo:</strong> <span id="det-domingo"></span></li>
+        <li><strong>Lunes:</strong> <span id="det-lunes"></span></li>
+        <li><strong>Martes:</strong> <span id="det-martes"></span></li>
+        <li><strong>Miércoles:</strong> <span id="det-miercoles"></span></li>
+        <li><strong>Jueves:</strong> <span id="det-jueves"></span></li>
+        <li><strong>Viernes:</strong> <span id="det-viernes"></span></li>
+        <li><strong>Sábado:</strong> <span id="det-sabado"></span></li>
+        </ul>
+
+        <div id="wrap-obras">
+        <p><strong>Obras:</strong></p>
+        <div class="obras-scroll">
+            <ul id="det-obras"></ul>
         </div>
+        </div>
+
+        <p><strong>Google Maps:</strong> 
+        <a id="det-mapa" href="#" target="_blank" class="btn-mapa-enlace">
+            <i class="fas fa-map-marker-alt"></i> Ver ubicación
+        </a>
+        </p>
+    </div>
     </div>
 
     <script>
         const datosIglesias = <?= json_encode($datos_iglesias, JSON_UNESCAPED_UNICODE) ?>;
 
+        // Normaliza texto para búsquedas
         function normalizar(texto) {
-            return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
+        return String(texto || "")
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            .trim().toLowerCase();
+        }
+
+        // Devuelve true si el valor indica que NO hay reuniones
+        function esSinReunion(valor) {
+        if (valor == null) return true;
+        let s = String(valor)
+            .replace(/<[^>]*>/g, "")
+            .replace(/\u00A0/g, " ")
+            .trim()
+            .toLowerCase()
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        s = s.replace(/^[\s\-–—_.:;]+|[\s\-–—_.:;]+$/g, "").replace(/\s+/g, " ").trim();
+
+        const VACIOS = new Set([
+            "", "sin reuniones", "sin reunion", "no hay", "no hay reuniones",
+            "no aplica", "n/a", "na", "ninguna", "sin actividades"
+        ]);
+
+        return VACIOS.has(s);
         }
 
         function filtrarPorZona(zona) {
-            const zonaNormalizada = normalizar(zona);
+        const zonaNormalizada = normalizar(zona);
+        const iglesia = datosIglesias.find(ig => normalizar(ig.asamblea) === zonaNormalizada);
 
-            const iglesia = datosIglesias.find(ig =>
-                normalizar(ig.asamblea) === zonaNormalizada
-            );
-
-            if (iglesia) {
-                mostrarDetalles(iglesia);
-            } else {
-                alert("No se encontraron datos para la asamblea: " + zona);
-            }
+        if (iglesia) {
+            mostrarDetalles(iglesia);
+        } else {
+            alert("No se encontraron datos para la asamblea: " + zona);
+        }
         }
 
         function mostrarDetalles(data) {
-            document.getElementById("det-asamblea").textContent = data.asamblea;
-            document.getElementById("det-numero").textContent = data.numero;
-            document.getElementById("det-Fehca_Fundacion").textContent = data.Fehca_Fundacion;
-            document.getElementById("det-ciudad").textContent = data.ciudad;
-            document.getElementById("det-estado").textContent = data.estado;
-            document.getElementById("det-direccion").textContent = data.direccion;
-            document.getElementById("det-domingo").textContent = data.domingo;
-            document.getElementById("det-lunes").textContent = data.lunes;
-            document.getElementById("det-martes").textContent = data.martes;
-            document.getElementById("det-miercoles").textContent = data.miercoles;
-            document.getElementById("det-jueves").textContent = data.jueves;
-            document.getElementById("det-viernes").textContent = data.viernes;
-            document.getElementById("det-sabado").textContent = data.sabado;
-            document.getElementById("det-obras").textContent = data.obras;
-            document.getElementById("det-mapa").href = data.GoogleMaps;
-            document.getElementById("modal").style.display = "block";
+        const campos = [
+            { id: "det-asamblea", valor: data.asamblea },
+            { id: "det-numero", valor: data.numero },
+            { id: "det-Fehca_Fundacion", valor: data.Fehca_Fundacion },
+            { id: "det-ciudad", valor: data.ciudad },
+            { id: "det-estado", valor: data.estado },
+            { id: "det-direccion", valor: data.direccion }
+        ];
+
+        campos.forEach(campo => {
+            const span = document.getElementById(campo.id);
+            if (!span) return;
+            const p = span.closest("p");
+            const v = (campo.valor ?? "").toString().trim();
+            if (v) {
+            span.textContent = v;
+            if (p) p.style.display = "block";
+            } else {
+            span.textContent = "";
+            if (p) p.style.display = "none";
+            }
+        });
+
+        // Días de la semana
+        const dias = ["domingo","lunes","martes","miercoles","jueves","viernes","sabado"];
+        dias.forEach(dia => {
+            const span = document.getElementById(`det-${dia}`);
+            if (!span) return;
+            const li = span.closest("li");
+            const valor = data[dia];
+            if (esSinReunion(valor)) {
+            span.textContent = "";
+            if (li) li.style.display = "none";
+            } else {
+            span.textContent = String(valor).trim();
+            if (li) li.style.display = "list-item";
+            }
+        });
+
+        const ul = document.getElementById("lista-horarios");
+        if (ul) {
+            const hayVisible = Array.from(ul.querySelectorAll("li"))
+            .some(li => li.style.display !== "none");
+            ul.style.display = hayVisible ? "block" : "none";
+        }
+
+        // ======== NUEVA SECCIÓN OBRAS ========
+        const obrasContainer = document.getElementById("det-obras");
+        const wrapObras = document.getElementById("wrap-obras");
+        obrasContainer.innerHTML = "";
+
+        if (data.obras && data.obras.trim() !== "" && data.obras.toLowerCase().trim() !== "sin obras que atender") {
+            const obrasList = data.obras.trim().split(/\r?\n+/).filter(line => line.trim() !== "");
+            if (obrasList.length > 0) {
+            obrasList.forEach(linea => {
+                const li = document.createElement("li");
+                li.textContent = linea.trim();
+                obrasContainer.appendChild(li);
+            });
+            wrapObras.style.display = "block";
+            } else {
+            wrapObras.style.display = "none";
+            }
+        } else {
+            wrapObras.style.display = "none";
+        }
+
+        // Google Maps
+        const mapaLink = document.getElementById("det-mapa");
+        if (data.GoogleMaps && data.GoogleMaps.trim() !== "") {
+            mapaLink.href = data.GoogleMaps.trim();
+            mapaLink.closest("p").style.display = "block";
+        } else {
+            mapaLink.href = "#";
+            mapaLink.closest("p").style.display = "none";
+        }
+
+        document.getElementById("modal").style.display = "block";
         }
 
         function cerrarModal() {
-            document.getElementById("modal").style.display = "none";
+        document.getElementById("modal").style.display = "none";
         }
 
-
-
-        /*==========Solo en caso de no tener Enlace GoogleMaps==========*/
         document.addEventListener("DOMContentLoaded", function () {
-            const mapaLink = document.getElementById("det-mapa");
-
-            mapaLink.addEventListener("click", function (e) {
-                const url = mapaLink.getAttribute("href");
-
-                if (!url || url === "#" || url.trim() === "") {
-                    e.preventDefault(); // Previene que se abra el enlace vacío
-                    alert("Enlace no disponible por ahora.\n\nSi lo tiene, favor hacerlo llegar al correo:\n\ndirectorioasambleas@gmail.com\n\nIndicando claramente el nombre de la asamblea y el estado en el que se encuentra.\n\nGracias de antemano.");
-                }
-            });
+        const mapaLink = document.getElementById("det-mapa");
+        mapaLink.addEventListener("click", function (e) {
+            const url = mapaLink.getAttribute("href");
+            if (!url || url === "#" || url.trim() === "") {
+            e.preventDefault();
+            alert("Enlace no disponible por ahora.\n\nSi lo tiene, favor hacerlo llegar al correo:\n\ndirectorioasambleas@gmail.com\n\nIndicando claramente el nombre de la asamblea y el estado en el que se encuentra.\n\nGracias de antemano.");
+            }
+        });
         });
     </script>
+
+    <style>
+        /* Estilo para la lista de obras */
+        .obras-scroll {
+            max-height: 100px;
+            overflow-y: auto;
+            margin-top: 6px;
+            /*border: 1px solid #ccc;/** */
+            border-radius: 6px;
+            background: transparent;
+            padding: 6px 10px;
+        }
+
+        .obras-scroll ul {
+            list-style-type: disc;
+            margin: 6px 0 6px 20px;
+            padding: 0;
+        }
+
+        .obras-scroll li {
+            margin-bottom: 5px;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        /* Scrollbar personalizada */
+        .obras-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .obras-scroll::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
+        }
+        .obras-scroll::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+    </style>
+
+
 </body>
 </html>
