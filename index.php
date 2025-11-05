@@ -23,28 +23,26 @@ $cookie_disabled = !isset($_COOKIE['test_cookie']);
     <link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Sansation:wght@400;700&display=swap" rel="stylesheet" />
 
 
-    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8 1.png">
-    
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
 
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0066cc" />
-
+    
     <script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker
-            .register("/service-worker.js")
-            .then((reg) => console.log("Service Worker registrado", reg))
-            .catch((err) => console.error("Error al registrar el Service Worker", err));
-        });
-    }
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('SW registrado'))
+                .catch(err => console.log('Error SW:', err));
+        }
     </script>
+    
 </head>
 <body>
 <div class="wrapper">
     <div class="container">
         <h1>Bienvenido</h1>
-        <p>Al Geolocalizador de las Asambleas Congregadas al Nombre del Señor en Venezuela</p>
+        <p>Al Directorio de las Asambleas Congregadas al Nombre del Señor en Venezuela</p>
         <button onclick="checkSession()" class="btn-login">Iniciar Sesión</button>
         <button onclick="location.href='Registrarse.php'" class="btn-register" style="background-color: #4D6164;">Registrarse</button>
         <button onclick="location.href='Menu/index.php?guest=true'" class="btn-guest">Ingresar como Invitado</button>
@@ -52,7 +50,7 @@ $cookie_disabled = !isset($_COOKIE['test_cookie']);
         
         <button id="installBtn" style="display: none; padding: 5px 5px; cursor: pointer; border-radius: 5px; background-color: #E6CDB7; color: #192E2F;">
             Instalar aplicación 
-            <img src="/Menu/iconos/icon2-8 1.png" alt="APP Icono" style="width: 20px; height: 20px;">
+            <img src="/Menu/iconos/icon2-8.png" alt="APP Icono" style="width: 10px; height: 10px;">
         </button>
     </div>
 </div>

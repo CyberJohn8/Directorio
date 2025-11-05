@@ -6,7 +6,10 @@ session_start();
 $message = "";
 $message_type = ""; // 'success' o 'error'
 
-$conn = new mysqli("sql308.infinityfree.com", "if0_39414119", "U7ML7oxb1B", "if0_39414119_geolocalizador");
+
+// Conexión a la base de datos
+//$conn = new mysqli("localhost", "root", "", "directorio");/** */
+$conn = new mysqli("sql204.infinityfree.com", "if0_39714112", "MWgk9nZD6H0RIl", "if0_39714112_directorio_asambleas");/** */
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -40,44 +43,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "✅ Registro exitoso. Redirigiendo al inicio de sesión...";
                 $message_type = "success";
                 header("refresh:2; url=Iniciar_Sesion.php");
+                // No hacer exit aquí para que muestre el mensaje y el toast
             } else {
                 $message = "❌ Error al registrar el usuario.";
                 $message_type = "error";
             }
         }
+
         $stmt->close();
     }
 }
 
 $conn->close();
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/png" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8-1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
     <link rel="stylesheet" href="Formulario.css">
+
+
     <style>
         #toast {
-            visibility: hidden; min-width: 250px; margin-left: -125px;
-            background-color: #333; color: #fff; text-align: center;
-            border-radius: 4px; padding: 16px; position: fixed; z-index: 1000;
-            left: 50%; bottom: 30px; font-size: 17px; opacity: 0;
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+            opacity: 0;
             transition: opacity 0.5s ease-in-out, visibility 0.5s;
         }
-        #toast.show { visibility: visible; opacity: 1; }
-        #toast.success { background-color: #4CAF50; }
-        #toast.error { background-color: #f44336; }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        #toast.success {
+            background-color: #4CAF50; /* verde */
+        }
+        #toast.error {
+            background-color: #f44336; /* rojo */
+        }
     </style>
+
 </head>
 <body>
     <div class="wrapperRegistro">
         <div class="container_Registro">
             <h1>Registro</h1>
-
-            <form id="formRegistro" method="POST" action="">
+            <form method="POST" action="">
                 <label for="username">Nombre de Usuario:</label>
                 <input type="text" id="username" name="username" required>
 
@@ -100,12 +126,13 @@ $conn->close();
             <p>¿Ya tienes cuenta? <a href="Iniciar_Sesion.php">Inicia sesión aquí</a></p>
             <button onclick="location.href='index.php'" class="btn-back">Volver</button>
         </div>
-
+        
         <div id="toast"></div>
+
     </div>
 
+
     <script>
-        // Toasts del backend (cuando hay conexión)
         window.onload = function() {
             const message = <?php echo json_encode($message); ?>;
             const messageType = <?php echo json_encode($message_type); ?>;
@@ -113,18 +140,16 @@ $conn->close();
                 const toast = document.getElementById("toast");
                 toast.textContent = message;
                 toast.classList.add("show");
-                toast.classList.add(messageType || "success");
-                setTimeout(() => { toast.classList.remove("show"); }, 3500);
+                toast.classList.add(messageType); // success o error
+
+                // Ocultar toast después de 3.5 segundos
+                setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 3500);
             }
         };
     </script>
 
-    <!-- Offline-first auth -->
-    <script src="offline-db.js"></script>
-    <script src="auth-offline.js"></script>
-    <script>
-      prepararFormAuth("#formRegistro", "registro");
-      if (navigator.onLine) sincronizarPendientesConServidor("https://cyberjohn.infinityfreeapp.com");
-    </script>
 </body>
+
 </html>

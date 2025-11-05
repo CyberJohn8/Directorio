@@ -1,0 +1,12 @@
+[package]
+name = "Directorio-pwa"
+version = "0.1.0"
+
+[dependencies]
+php = "8.3"
+
+[[command]]
+name = "web"
+mode = "interactive"
+command = "php"
+args = ["-S", "0.0.0.0:8000", "-t", "public"]

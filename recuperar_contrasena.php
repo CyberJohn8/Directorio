@@ -2,7 +2,7 @@
 session_start();
 
 // Conexión
-$conn = new mysqli("sql308.infinityfree.com", "if0_39414119", "U7ML7oxb1B", "if0_39414119_geolocalizador");
+$conn = new mysqli("localhost", "root", "", "directorio");
 if ($conexion->connect_error) {
     die("Error de conexión");
 }
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["codigo_verificar"])) 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
   <meta charset="UTF-8">
   <title>Recuperar Contraseña</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["codigo_verificar"])) 
       ahora.setMinutes(ahora.getMinutes() + 10);
       const expira = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-      emailjs.send("service_vywtc0q", "template_z2dzuby", {
+      emailjs.send("service_e8416xk", "template_z2dzuby", {
         user_email: email,
         codigo: codigo,
         expira: expira

@@ -1,0 +1,6 @@
+# En tu composer.json
+{
+    "scripts": {
+        "start": "php -S 0.0.0.0:8000 -t public"
+    }
+}

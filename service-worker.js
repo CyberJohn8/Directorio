@@ -8,24 +8,32 @@ const urlsToCache = [
   `${BASE_URL}/Formulario.css`,
   `${BASE_URL}/manifest.json`,
   `${BASE_URL}/service-worker.js`,
+
   `${BASE_URL}/Menu/iconos/icon2-8 1.png`,
   `${BASE_URL}/Menu/iconos/icon2-8 1.png`,
+
   `${BASE_URL}/Iniciar_Sesion.php`,
   `${BASE_URL}/Registrarse.php`,
   `${BASE_URL}/recuperar_contrasena.php`,
+
   `${BASE_URL}/Menu/index.php`,
+
   `${BASE_URL}/Ubicaciones/ubicaciones.css`,
   `${BASE_URL}/Ubicaciones/ubicaciones.js`,
   `${BASE_URL}/Ubicaciones/ubicaciones.php`,
+
   `${BASE_URL}/LiteraturaBiblica/literatura.css`,
   `${BASE_URL}/LiteraturaBiblica/literatura.js`,
   `${BASE_URL}/LiteraturaBiblica/literatura.php`,
+
   `${BASE_URL}/Eventos/eventos.css`,
   `${BASE_URL}/Eventos/eventos.js`,
   `${BASE_URL}/Eventos/eventos.php`,
+
   `${BASE_URL}/Material/material.css`,
   `${BASE_URL}/Material/material.js`,
   `${BASE_URL}/Material/material.php`,
+  
   `${BASE_URL}/imagenes/mapa.png`,
   `${BASE_URL}/imagenes/fondo.jpg`,
 

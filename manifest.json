@@ -1,6 +1,6 @@
 {
-  "name": "Geolocalizador Bíblico",
-  "short_name": "GeoBiblia",
+  "name": "Directorio de Asambleas Congregadas al Nombre del Señor en Venezuela",
+  "short_name": "Directorio de Asambleas",
   "start_url": "/index.php",
   "scope": "/",
   "display": "standalone",

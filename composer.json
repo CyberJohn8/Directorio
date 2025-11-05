@@ -1,5 +1,5 @@
 {
-  "name": "GeoBiblia",
-  "description": "Mi proyecto PWA en PHP",
-  "require": {}
+    "require": {
+        "php": "^7.4"
+    }
 }

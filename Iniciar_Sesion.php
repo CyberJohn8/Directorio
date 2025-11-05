@@ -1,88 +1,91 @@
 <?php
-// session_config.php
-// Fix para InfinityFree: sesiones
-ini_set("session.save_path", __DIR__ . "/tmp");
-if (!file_exists(__DIR__ . "/tmp")) {
-    mkdir(__DIR__ . "/tmp", 0777, true);
-}
 session_start();
+ob_start();
 
-// ============================================
-// LOGIN.PHP - Inicio de Sesión
-// ============================================
-
-
+header('Content-Type: text/html; charset=utf-8'); // ✅ Soporte UTF-8
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Conexión a la BD
-$conn = new mysqli("sql308.infinityfree.com", "if0_39414119", "U7ML7oxb1B", "if0_39414119_geolocalizador");
+// Conexión a la base de datos
+//$conn = new mysqli("localhost", "root", "", "directorio");/** */
+$conn = new mysqli("sql204.infinityfree.com", "if0_39714112", "MWgk9nZD6H0RIl", "if0_39714112_directorio_asambleas");/** */
+
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
+// ✅ Establecer codificación de caracteres para MySQL
+$conn->set_charset("utf8mb4");
+
+// Inicializar intentos fallidos si no existen
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = 0;
+}
+
 $message = "";
 
-// ==================== LOGIN =====================
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $_POST['password'];
+// Procesar el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
 
-    // Buscar usuario por email o username
-    $sql = "SELECT id, username, email, password, rol 
-            FROM usuarios 
-            WHERE email = '$email' OR username = '$email'
-            LIMIT 1";
-    $resultado = $conn->query($sql);
+    if (!empty($email) && !empty($password)) {
+        $stmt = $conn->prepare("SELECT id, username, password, rol FROM usuarios WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    if ($resultado && $resultado->num_rows > 0) {
-        $fila = $resultado->fetch_assoc();
-        $hash = $fila['password'];
+        if ($result->num_rows === 1) {
+            $usuario = $result->fetch_assoc();
+            $hash = $usuario["password"];
 
-        // Verificar hash o texto plano (temporal, por compatibilidad)
-        if (password_verify($password, $hash) || $password === $hash) {
-            // Normalizar rol
-            $rol = strtolower(trim($fila['rol']));
-            if ($rol === "admin" || $rol === "usuario") {
-                $_SESSION["rol"] = $rol;
+            // Validar contraseña
+            if (password_verify($password, $hash) || $password === $hash) {
+                // Login exitoso → reiniciar intentos
+                $_SESSION['login_attempts'] = 0;
+
+                $_SESSION["user_id"] = $usuario["id"];
+                $_SESSION["username"] = $usuario["username"];
+                $_SESSION["rol"] = $usuario["rol"];
+                header("Location: Menu/index.php");
+                exit();
             } else {
-                $_SESSION["rol"] = "invitado"; // fallback de seguridad
+                $message = "⚠️ Contraseña incorrecta.";
+                $_SESSION['login_attempts']++;
             }
-
-            // Guardar sesión
-            $_SESSION["username"] = $fila['username'];
-            $_SESSION["user_id"]  = $fila['id'];
-
-            // Redirección segura con PHP
-            header("Location: Menu/index.php");
-            exit();
         } else {
-            $message = "Contraseña incorrecta.";
+            $message = "⚠️ Correo no registrado.";
+            $_SESSION['login_attempts']++;
         }
+
+        $stmt->close();
     } else {
-        $message = "Usuario o correo no encontrado.";
+        $message = "⚠️ Por favor, complete todos los campos.";
     }
 }
 
+$conn->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/png" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8-1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="Formulario.css">
+    
 </head>
 <body>
     <div class="wrapper">
         <div class="container_Sesion">
             <h1>Iniciar Sesión</h1>
-
-            <form id="formLogin" method="POST" action="">
-                <label for="email">Correo o Usuario:</label>
-                <input type="text" id="email" name="email" required>
+            <form method="POST" action="">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
 
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" required>
@@ -94,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <p class="error-message"><?php echo htmlspecialchars($message); ?></p>
             <?php endif; ?>
 
+            <!-- Mostrar enlace solo después de 1 intentos fallidos -->
             <?php if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 1) : ?>
                 <a href="recuperar_contrasena.php" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
             <?php endif; ?>
@@ -103,15 +107,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <button onclick="location.href='index.php'" class="btn-guest">Volver</button>
         </div>
     </div>
-
-    <!-- Offline-first auth -->
-    <script src="offline-db.js"></script>
-    <script src="auth-offline.js"></script>
-    <script>
-      // Prepara el formulario para modo online/offline
-      prepararFormAuth("#formLogin", "login");
-      // Intenta sincronizar pendientes si ya hay conexión
-      if (navigator.onLine) sincronizarPendientesConServidor("https://cyberjohn.infinityfreeapp.com");
-    </script>
 </body>
 </html>
