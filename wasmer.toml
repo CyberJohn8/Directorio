@@ -1,12 +1,14 @@
 [package]
-name = "Directorio-pwa"
-version = "0.1.0"
+name = "cyberjohn8/directorio"
+version = "1.0.0"
+description = "Mi directorio web"
+license = "MIT"
 
-[dependencies]
-php = "8.3"
+[[static]]
+path = "/"
+location = "."
 
-[[command]]
+[command]
 name = "web"
-mode = "interactive"
-command = "php"
-args = ["-S", "0.0.0.0:8000", "-t", "public"]
+module = "static-web-server"
+runner = "wasmer/static-web-server"
