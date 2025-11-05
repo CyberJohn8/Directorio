@@ -1,11 +1,26 @@
 [package]
-name = "geolocalizador"
+name = "cyberjohn8/directorio-php-pwa"
 version = "1.0.0"
+description = "Directorio PHP Progressive Web App"
+license = "MIT"
 
 [build]
-exclude = ["*.sql", "*/IMG/*"]
+command = "composer install --no-dev --optimize-autoloader"
 
-[[command]]
+[[module]]
+name = "php-app"
+source = "index.php"
+interface = "wasi"
+
+[fs]
+"/app" = "./"
+
+[command]
 name = "web"
-module = "php"
-url = "/"
+module = "php-app"
+runner = "wasmer/php"
+args = ["-S", "0.0.0.0:8080", "-t", "/app"]
+
+[[static]]
+path = "/assets"
+location = "./assets"

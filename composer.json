@@ -1,10 +1,28 @@
 {
     "name": "cyberjohn8/directorio",
+    "description": "Directorio PHP PWA",
     "type": "project",
     "require": {
-        "php": "^8.3"
+        "php": "^8.0 || ^8.1 || ^8.2",
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
-    "scripts": {
-        "start": "php -S 0.0.0.0:8000 -t public"
-    }
+    "require-dev": {
+        "php": "^8.0 || ^8.1 || ^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
