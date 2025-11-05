@@ -1,5 +1,10 @@
 {
+    "name": "cyberjohn8/directorio",
+    "type": "project",
     "require": {
-        "php": "^7.4"
+        "php": "^8.3"
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:8000 -t public"
     }
 }

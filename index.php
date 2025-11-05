@@ -28,10 +28,12 @@ $cookie_disabled = !isset($_COOKIE['test_cookie']);
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0066cc" />
     
+    
     <script>
         // Registrar Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('/service-worker.js')
+            
                 .then(reg => console.log('SW registrado'))
                 .catch(err => console.log('Error SW:', err));
         }

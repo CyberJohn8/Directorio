@@ -1,14 +1,11 @@
 [package]
-name = "cyberjohn8/directorio"
+name = "geolocalizador"
 version = "1.0.0"
-description = "Mi directorio web"
-license = "MIT"
 
-[[static]]
-path = "/"
-location = "."
+[build]
+exclude = ["*.sql", "*/IMG/*"]
 
-[command]
+[[command]]
 name = "web"
-module = "static-web-server"
-runner = "wasmer/static-web-server"
+module = "php"
+url = "/"

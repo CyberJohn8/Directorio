@@ -1,5 +1,2 @@
-#!/bin/bash
-# Iniciar PHP-FPM
-php-fpm &
-# Iniciar Nginx
-nginx -g 'daemon off;'
+#!/bin/sh
+php -S 0.0.0.0:8080 -t .
