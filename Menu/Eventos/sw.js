@@ -5,7 +5,7 @@ self.addEventListener("install", function (event) {
   self.addEventListener("notificationclick", function (event) {
     event.notification.close();
     event.waitUntil(
-      clients.openWindow("https://cyberjohn.infinityfreeapp.com/Menu/Eventos/")
+      clients.openWindow("https://directorio.wasmer.app//Menu/Eventos/")
     );
   });
   

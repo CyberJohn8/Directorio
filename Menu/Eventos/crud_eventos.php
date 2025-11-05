@@ -1,19 +1,14 @@
 <?php
-// Fix para InfinityFree
-ini_set("session.save_path", __DIR__ . "/../tmp");
-if (!file_exists(__DIR__ . "/../tmp")) {
-    mkdir(__DIR__ . "/../tmp", 0777, true);
-}
-
 session_start();
 header('Content-Type: text/html; charset=utf-8'); // Asegura codificación UTF-8
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../index.php");
+    header("Location: https://directorio.wasmer.app//index.php");
     exit();
 }
 
-$conn = new mysqli("sql308.infinityfree.com", "if0_39414119", "U7ML7oxb1B", "if0_39414119_geolocalizador");
+/*$conn = new mysqli("localhost", "root", "", "directorio");/** */
+$conn = new mysqli("sql204.infinityfree.com", "if0_39714112", "MWgk9nZD6H0RIl", "if0_39714112_directorio_asambleas");/** */
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -85,7 +80,7 @@ $result = $conn->query("SELECT * FROM eventos ORDER BY fecha_publicacion DESC");
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar Eventos</title>
@@ -127,7 +122,7 @@ $result = $conn->query("SELECT * FROM eventos ORDER BY fecha_publicacion DESC");
             console.log('Service Worker registrado');
             reg.showNotification("Nuevo evento <?= $_SESSION['evento_notificacion']['accion'] ?>", {
                 body: "<?= $_SESSION['evento_notificacion']['detalles'] ?> en <?= $_SESSION['evento_notificacion']['ubicacion'] ?>",
-                icon: "../iconos/eventos.png",
+                icon: "https://directorio.wasmer.app//iconos/eventos.png",
                 tag: "evento-<?= time() ?>"
             });
         }).catch(function(err) {

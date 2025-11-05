@@ -1,17 +1,12 @@
 <?php
-// Fix para InfinityFree
-ini_set("session.save_path", __DIR__ . "/../tmp");
-if (!file_exists(__DIR__ . "/../tmp")) {
-    mkdir(__DIR__ . "/../tmp", 0777, true);
-}
-
 session_start();
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Conexión a la base de datos
-$conn = new mysqli("sql308.infinityfree.com", "if0_39414119", "U7ML7oxb1B", "if0_39414119_geolocalizador");
+/*$conn = new mysqli("localhost", "root", "", "directorio");/** */
+$conn = new mysqli("sql204.infinityfree.com", "if0_39714112", "MWgk9nZD6H0RIl", "if0_39714112_directorio_asambleas");/** */
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -23,7 +18,8 @@ date_default_timezone_set("America/Caracas");
 
 
 <?php
-    $conexion = new mysqli("sql308.infinityfree.com", "if0_39414119", "U7ML7oxb1B", "if0_39414119_geolocalizador");
+    /*$conexion = new mysqli("localhost", "root", "", "directorio");/** */
+    $conexion = new mysqli("sql204.infinityfree.com", "if0_39714112", "MWgk9nZD6H0RIl", "if0_39714112_directorio_asambleas");/** */
     if ($conexion->connect_error) {
         die("Error de conexión: " . $conexion->connect_error);
     }
@@ -94,7 +90,7 @@ date_default_timezone_set("America/Caracas");
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventos</title>
@@ -1103,27 +1099,27 @@ date_default_timezone_set("America/Caracas");
         <button class="icon-btn btn-menu" onclick="toggleSidebarMenu()" title="Menú">
             <img src="iconos/Menu.png" alt="Menú">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" title="Inicio">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/index.php'" title="Inicio">
             <img src="iconos/Inicio.png" alt="Inicio">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php'" title="Ubicación">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Submenu.php'" title="Ubicación">
             <img src="iconos/ubicaciones.png" alt="Ubicación">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php'" title="Eventos">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Eventos/index.php'" title="Eventos">
             <img src="iconos/eventos.png" alt="Eventos">
         </button>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php'" title="Donaciones">
+            <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Donaciones/index.php'" title="Donaciones">
                 <img src="iconos/donation.png" alt="Donaciones">
             </button>
         <?php endif; ?>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php'" title="Material Literario">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Material/index.php'" title="Material Literario">
             <img src="iconos/material.png" alt="Material Literario">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php'" title="Biblia">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/LiteraturaBiblica/index.php'" title="Biblia">
             <img src="iconos/Biblia.png" alt="Estudio Bíblico">
         </button>
-        <button class="icon-btn btn-sesion" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/logout.php'" title="Cerrar Sesión">
+        <button class="icon-btn btn-sesion" onclick="location.href='https://directorio.wasmer.app//Menu/logout.php'" title="Cerrar Sesión">
             <img src="iconos/Sesion.png" alt="Cerrar Sesión">
         </button>
     </nav>
@@ -1132,20 +1128,20 @@ date_default_timezone_set("America/Caracas");
     <!-- Menú emergente (sidebar) para celular -->
     <div class="sidebar mobile-only" id="sidebarMenu">
         <h2>Menú</h2>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/index.php">Inicio</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php">Ubicación</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php">Eventos</a>
+        <a href="https://directorio.wasmer.app//Menu/index.php">Inicio</a>
+        <a href="https://directorio.wasmer.app//Menu/Submenu.php">Ubicación</a>
+        <a href="https://directorio.wasmer.app//Menu/Eventos/index.php">Eventos</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php">Donaciones</a>
+            <a href="https://directorio.wasmer.app//Menu/Donaciones/index.php">Donaciones</a>
         <?php endif; ?>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php">Material Literario</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
+        <a href="https://directorio.wasmer.app//Menu/Material/index.php">Material Literario</a>
+        <a href="https://directorio.wasmer.app//Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Cuenta/index.php">Gestionar Sesión</a>
+            <a href="https://directorio.wasmer.app//Cuenta/index.php">Gestionar Sesión</a>
         <?php endif; ?>
         
 
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Copiryt.php">Acerca de</a>
+        <a href="https://directorio.wasmer.app//Menu/Copiryt.php">Acerca de</a>
 
         <button class="close-btn" onclick="toggleSidebarMenu()">Cerrar</button>
     </div>
@@ -1196,7 +1192,7 @@ date_default_timezone_set("America/Caracas");
     <!-- Contenido principal -->
     <div class="main-content">
         <header class="event-header">
-            <button class="return-button" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'"></button>
+            <button class="return-button" onclick="location.href='https://directorio.wasmer.app//Menu/index.php'"></button>
             <h1>Cartelera de Eventos</h1>
 
             <div class="header-right">

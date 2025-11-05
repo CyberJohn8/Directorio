@@ -1,38 +1,20 @@
 <?php
-// Fix para InfinityFree: ruta temporal para las sesiones
-ini_set("session.save_path", __DIR__ . "/../tmp");
-if (!file_exists(__DIR__ . "/../tmp")) {
-    mkdir(__DIR__ . "/../tmp", 0777, true);
-}
-
 session_start();
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Inicializar usuario y rol por defecto si no existe sesión
-if (!isset($_SESSION['username'])) {
-    $_SESSION['username'] = 'Invitado';
-}
-if (!isset($_SESSION['rol'])) {
-    $_SESSION['rol'] = 'invitado';
-}
-
 // Conexión a la base de datos
-$conn = new mysqli(
-    "sql308.infinityfree.com",
-    "if0_39414119",
-    "U7ML7oxb1B",
-    "if0_39414119_instituciones"
-);
+$conn = new mysqli("sql204.infinityfree.com", "if0_39714112", "MWgk9nZD6H0RIl", "if0_39714112_directorio_asambleas");
 
+//$conn = new mysqli("localhost", "root", "", "directorio");
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
 $conn->set_charset("utf8");
 
-// Obtener tipos únicos de institución
+// Obtener tipos únicos
 $tipos = [];
 $resultadoTipos = $conn->query("SELECT DISTINCT Tipo_Institucion FROM instituciones ORDER BY Tipo_Institucion ASC");
 if ($resultadoTipos && $resultadoTipos->num_rows > 0) {
@@ -42,7 +24,7 @@ if ($resultadoTipos && $resultadoTipos->num_rows > 0) {
 }
 
 // AJAX: instituciones por tipo
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['getInstituciones'], $_POST['tipo'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['getInstituciones']) && isset($_POST['tipo'])) {
     $tipo = $conn->real_escape_string($_POST['tipo']);
     $res = $conn->query("SELECT id, institucion FROM instituciones WHERE Tipo_Institucion = '$tipo' ORDER BY institucion ASC");
     $data = [];
@@ -54,29 +36,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['getInstituciones'], $
 }
 
 // AJAX: datos de institución
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['getDatos'], $_POST['id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['getDatos']) && isset($_POST['id'])) {
     $id = (int) $_POST['id'];
     $res = $conn->query("SELECT banco, telefono, ci_rif, director, Correo FROM instituciones WHERE id = $id LIMIT 1");
     $data = $res->fetch_assoc();
     echo json_encode($data);
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donaciones por Institución</title>
     <script src="https://www.paypal.com/sdk/js?client-id=AenfiCmVkBjABTrDQ2aERyHXJcEWOflaeX5P_eNIdk_tBPPucmQzjjcvwkYH2azhJTyAyvXM-ghnY_QU&currency=USD"></script>
     
     <link rel="stylesheet" href="Donaciones.css">
-    
+    <link rel="stylesheet" href="modo-telefono.css">
 
-    
     <style>
         /* === FUENTES === */
         @import url('https://fonts.googleapis.com/css2?family=Rakkas&family=Sansation&display=swap');
@@ -977,67 +957,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['getDatos'], $_POST['i
 </head>
 <body>
 
-<!-- CONTENEDOR DEL MENÚ -->
-<nav class="menu-nav">
-    <button class="icon-btn btn-menu" onclick="toggleSidebarMenu()" title="Menú">
-        <img src="iconos/Menu.png" alt="Menú">
-    </button>
-    <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" title="Inicio">
-        <img src="iconos/Inicio.png" alt="Inicio">
-    </button>
-    <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php'" title="Ubicación">
-        <img src="iconos/ubicaciones.png" alt="Ubicación">
-    </button>
-    <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php'" title="Eventos">
-        <img src="iconos/eventos.png" alt="Eventos">
-    </button>
-
-    <?php if ($_SESSION["rol"] !== "invitado") : ?>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php'" title="Donaciones">
-            <img src="iconos/donation.png" alt="Donaciones">
+    <!-- CONTENEDOR DEL MENÚ -->
+    <nav class="menu-nav">
+        <button class="icon-btn btn-menu" onclick="toggleSidebarMenu()" title="Menú">
+            <img src="iconos/Menu.png" alt="Menú">
         </button>
-    <?php endif; ?>
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/index.php'" title="Inicio">
+            <img src="iconos/Inicio.png" alt="Inicio">
+        </button>
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Submenu.php'" title="Ubicación">
+            <img src="iconos/ubicaciones.png" alt="Ubicación">
+        </button>
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Eventos/index.php'" title="Eventos">
+            <img src="iconos/eventos.png" alt="Eventos">
+        </button>
+        <?php if ($_SESSION["rol"] !== "invitado") : ?>
+            <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Donaciones/index.php'" title="Donaciones">
+                <img src="iconos/donation.png" alt="Donaciones">
+            </button>
+        <?php endif; ?>
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Material/index.php'" title="Material Literario">
+            <img src="iconos/material.png" alt="Material Literario">
+        </button>
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/LiteraturaBiblica/index.php'" title="Biblia">
+            <img src="iconos/Biblia.png" alt="Estudio Bíblico">
+        </button>
+        <button class="icon-btn btn-sesion" onclick="location.href='https://directorio.wasmer.app//Menu/logout.php'" title="Cerrar Sesión">
+            <img src="iconos/Sesion.png" alt="Cerrar Sesión">
+        </button>
+    </nav>
 
-    <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php'" title="Material Literario">
-        <img src="iconos/material.png" alt="Material Literario">
-    </button>
-    <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php'" title="Biblia">
-        <img src="iconos/Biblia.png" alt="Estudio Bíblico">
-    </button>
-    <button class="icon-btn btn-sesion" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/logout.php'" title="Cerrar Sesión">
-        <img src="iconos/Sesion.png" alt="Cerrar Sesión">
-    </button>
-</nav>
 
-<!-- Menú sidebar móvil -->
-<div class="sidebar mobile-only" id="sidebarMenu">
-    <h2>Menú</h2>
-    <a href="https://cyberjohn.infinityfreeapp.com/Menu/index.php">Inicio</a>
-    <a href="https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php">Ubicación</a>
-    <a href="https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php">Eventos</a>
-    
-    <?php if ($_SESSION["rol"] !== "invitado") : ?>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php">Donaciones</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Cuenta/index.php">Administrar Cuenta</a>
-    <?php endif; ?>
+    <!-- Menú emergente (sidebar) para celular -->
+    <div class="sidebar mobile-only" id="sidebarMenu">
+        <h2>Menú</h2>
+        <a href="https://directorio.wasmer.app//Menu/index.php">Inicio</a>
+        <a href="https://directorio.wasmer.app//Menu/Submenu.php">Ubicación</a>
+        <a href="https://directorio.wasmer.app//Menu/Eventos/index.php">Eventos</a>
+        <?php if ($_SESSION["rol"] !== "invitado") : ?>
+            <a href="https://directorio.wasmer.app//Menu/Donaciones/index.php">Donaciones</a>
+        <?php endif; ?>
+        <a href="https://directorio.wasmer.app//Menu/Material/index.php">Material Literario</a>
+        <a href="https://directorio.wasmer.app//Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
+        <?php if ($_SESSION["rol"] !== "invitado") : ?>
+            <a href="https://directorio.wasmer.app//Cuenta/index.php">Administrar Cuenta</a>
+        <?php endif; ?>
 
-    <a href="https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php">Material Literario</a>
-    <a href="https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
-    <a href="https://cyberjohn.infinityfreeapp.com/Menu/Copiryt.php">Acerca de</a>
 
-    <button class="close-btn" onclick="toggleSidebarMenu()">Cerrar</button>
-</div>
+        
 
-<div class="overlay" id="overlay" onclick="toggleSidebarMenu()"></div>
+        <a href="https://directorio.wasmer.app//Menu/Copiryt.php">Acerca de</a>
 
-<script>
-function toggleSidebarMenu() {
-    const sidebar = document.getElementById('sidebarMenu');
-    const overlay = document.getElementById('overlay');
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-}
-</script>
+        <button class="close-btn" onclick="toggleSidebarMenu()">Cerrar</button>
+    </div>
+
+    <!-- Fondo oscuro -->
+    <div class="overlay" id="overlay" onclick="toggleSidebarMenu()"></div>
+
+    <script>
+        function toggleSidebarMenu() {
+            const sidebar = document.getElementById('sidebarMenu');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
+
+
 
 <div class="main-content">
     <div class="header">
@@ -1051,15 +1037,16 @@ function toggleSidebarMenu() {
 
     <div class="content">
         <h2>Selecciona una Institución</h2>
-        <h4>Nota: Esta cuenta de PayPal está bloqueada y sólo está presente para fines de proyecto universitario.</h4>
-       
+        
+        <?php if (isset($_SESSION['user_id']) && in_array($_SESSION['rol'], ['usuario', 'admin'])): ?>
         <form id="donacion-form">
-            <label for="moneda">Moneda:</label>
+            <!--<label for="moneda">Moneda:</label>
             <select id="moneda" onchange="actualizarMetodo()">
                 <option value="VES" selected>Bolívares (VES)</option>
                 <option value="USD">Dólares (USD)</option>
-            </select>
+            </select>-->
 
+            <!-- SECCIÓN QUE SE OCULTA CON DÓLARES -->
             <div id="seleccion-institucion">
                 <label for="tipo">Tipo de institución:</label>
                 <select id="tipo" name="tipo" onchange="cargarInstituciones()" required>
@@ -1076,7 +1063,8 @@ function toggleSidebarMenu() {
             </div>
         </form>
 
-        <div id="datos-donacion" class="pago-datos" style="display:none;">
+        <!-- DATOS PARA TRANSFERENCIA / PAGO MÓVIL -->
+        <div id="datos-donacion" class="pago-datos">
             <h3>Datos para Donar:</h3>
             <p><strong>Banco:</strong> <span id="banco"></span></p>
             <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
@@ -1085,91 +1073,116 @@ function toggleSidebarMenu() {
             <p><strong>Correo:</strong> <span id="correo"></span></p>
         </div>
 
-        <div id="paypal-button-container" class="metodos" style="display:none;"></div>
-        <div id="paypal-nota" class="metodos" style="display:none; font-size:14px; margin-top:10px;">
-            <p><strong>Nota:</strong> Después de realizar tu donación por PayPal, notifica a: 
-                <a href="mailto:directorioasambleas@gmail.com">directorioasambleas@gmail.com</a>
-            </p>
+        
+        <!-- BOTÓN DE PAYPAL SOLO PARA USD -->
+        <div id="paypal-button-container" class="metodos"></div>
+
+        <!-- Nota para quienes donan por PayPal -->
+        <div id="paypal-nota" class="metodos" style="display: none; font-size: 14px; margin-top: 10px;">
+            <h4>Nota: Esta cuenta de PayPal está bloqueada y no se tiene planeado conservar esta función en el 
+                producto final, sólo está presente para que el proyecto cumpla los requisitos para la 
+                Universidad, por lo que se agradece tener precaución y no transferir aquí.
+            </h4>
+        
+            <p><strong>Nota:</strong> Después de realizar tu donación por PayPal, por favor escribe una notificación al correo: <a href="mailto:directorioasambleas@gmail.com">directorioasambleas@gmail.com</a></p>
         </div>
+
+
+        <?php else: ?>
+            <p>Por favor inicie sesión como usuario o administrador para acceder a las opciones de donación.</p>
+        <?php endif; ?>
     </div>
 </div>
 
 <script>
-function cargarInstituciones() {
-    const tipo = document.getElementById('tipo').value;
-    const institucion = document.getElementById('institucion');
-    institucion.innerHTML = '<option value="">Cargando...</option>';
+    function cargarInstituciones() {
+        const tipo = document.getElementById('tipo').value;
+        const institucion = document.getElementById('institucion');
+        institucion.innerHTML = '<option value="">Cargando...</option>';
 
-    fetch('', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'getInstituciones=1&tipo=' + encodeURIComponent(tipo)
-    })
-    .then(res => res.json())
-    .then(data => {
-        institucion.innerHTML = '<option value="">-- Selecciona una institución --</option>';
-        data.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.id;
-            option.textContent = item.institucion;
-            institucion.appendChild(option);
-        });
-        document.getElementById('datos-donacion').style.display = 'none';
-    });
-}
-
-function mostrarDatos() {
-    const id = document.getElementById('institucion').value;
-    if (!id) return;
-
-    fetch('', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'getDatos=1&id=' + encodeURIComponent(id)
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById('banco').textContent = data.banco || 'N/D';
-        document.getElementById('telefono').textContent = data.telefono || 'N/D';
-        document.getElementById('ci_rif').textContent = data.ci_rif || 'N/D';
-        document.getElementById('director').textContent = data.director || 'N/D';
-        document.getElementById('correo').textContent = data.Correo || 'N/D';
-        document.getElementById('datos-donacion').style.display = 'block';
-    });
-}
-
-function actualizarMetodo() {
-    const moneda = document.getElementById('moneda').value;
-    const paypalContainer = document.getElementById('paypal-button-container');
-    const paypalNota = document.getElementById('paypal-nota');
-    const seccionInstitucion = document.getElementById('seleccion-institucion');
-    const datosDonacion = document.getElementById('datos-donacion');
-
-    if (moneda === 'USD') {
-        paypalContainer.style.display = 'block';
-        paypalNota.style.display = 'block';
-        seccionInstitucion.style.display = 'none';
-        datosDonacion.style.display = 'none';
-    } else {
-        paypalContainer.style.display = 'none';
-        paypalNota.style.display = 'none';
-        seccionInstitucion.style.display = 'block';
-    }
-}
-
-paypal.Buttons({
-    createOrder: function(data, actions) {
-        return actions.order.create({ purchase_units: [{ amount: { value: '10' } }] });
-    },
-    onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert('Gracias por tu donación, ' + details.payer.name.given_name + '!');
+        fetch('', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'getInstituciones=1&tipo=' + encodeURIComponent(tipo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            institucion.innerHTML = '<option value="">-- Selecciona una institución --</option>';
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id;
+                option.textContent = item.institucion;
+                institucion.appendChild(option);
+            });
+            document.getElementById('datos-donacion').style.display = 'none';
         });
     }
-}).render('#paypal-button-container');
 
-window.addEventListener('DOMContentLoaded', actualizarMetodo);
+    function mostrarDatos() {
+        const id = document.getElementById('institucion').value;
+        if (!id) return;
+
+        fetch('', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'getDatos=1&id=' + encodeURIComponent(id)
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('banco').textContent = data.banco || 'N/D';
+            document.getElementById('telefono').textContent = data.telefono || 'N/D';
+            document.getElementById('ci_rif').textContent = data.ci_rif || 'N/D';
+            document.getElementById('director').textContent = data.director || 'N/D';
+            document.getElementById('correo').textContent = data.Correo || 'N/D';
+            document.getElementById('datos-donacion').style.display = 'block';
+        });
+    }
+
+    function actualizarMetodo() {
+        const moneda = document.getElementById('moneda').value;
+        const paypalContainer = document.getElementById('paypal-button-container');
+        const paypalNota = document.getElementById('paypal-nota');
+        const seccionInstitucion = document.getElementById('seleccion-institucion');
+        const datosDonacion = document.getElementById('datos-donacion');
+
+        if (moneda === 'USD') {
+            paypalContainer.style.display = 'block';
+            paypalNota.style.display = 'block';
+            seccionInstitucion.style.display = 'none';
+            datosDonacion.style.display = 'none';
+        } else {
+            paypalContainer.style.display = 'none';
+            paypalNota.style.display = 'none';
+            seccionInstitucion.style.display = 'block';
+        }
+    }
+
+
+    function setMonto(valor) {
+        const input = document.getElementById('monto');
+        input.value = (parseInt(input.value) || 0) + valor;
+    }
+
+    // PayPal SDK
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{ amount: { value: '10' } }] // Puedes reemplazar '10' por un input si lo deseas
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Gracias por tu donación, ' + details.payer.name.given_name + '!');
+            });
+        }
+    }).render('#paypal-button-container');
+
+    // Ejecutar al cargar la página
+    window.addEventListener('DOMContentLoaded', actualizarMetodo);
 </script>
+
+
+
 
 </body>
 </html>

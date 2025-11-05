@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Derechos de Autor - Directorio de Asambleas</title>
@@ -141,7 +141,7 @@
 
 <body>
     <!-- Botón de retorno -->
-    <button onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" class="return-button" title="Volver"></button>
+    <button onclick="location.href='https://directorio.wasmer.app//Menu/index.php'" class="return-button" title="Volver"></button>
 
     <div class="contenido">
         <h1>Acerca de esta aplicación</h1>
@@ -164,12 +164,16 @@
 
         <p>Los datos se manejan de forma segura y son accesibles solo para los fines establecidos en el uso de esta plataforma. Al utilizar la aplicación, usted acepta estas condiciones.</p>
 
+        <h2>Agradecimientos</h2>
+        <p>Se agradece especialmente a <strong>Andrés Padrón</strong> por su valiosa colaboración al facilitar la base de datos del <strong>Himnario</strong>, contribuyendo significativamente al desarrollo y funcionalidad de esta aplicación.</p>
+
         <footer>
             © 2025 John Malavé. Todos los derechos reservados.<br>
             Prohibida su reproducción total o parcial sin autorización previa.<br>
             Versión 1.0 | Última actualización: agosto de 2025
         </footer>
     </div>
+
 
 
 </body>

@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $host = "localhost";          // Usualmente localhost
 $usuario = "root";            // Usuario de tu base de datos
 $contrasena = "";             // Contraseña del usuario (en blanco por defecto en XAMPP)
-$basedatos = "if0_39414119_geolocalizador"; // Nombre de tu base de datos
+$basedatos = "if0_39714112_geolocalizador"; // Nombre de tu base de datos
 
 // Crear la conexión
 $conn = new mysqli($host, $usuario, $contrasena, $basedatos);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegir Método de Búsqueda</title>
@@ -14,7 +14,7 @@
 <body>
 
     <div class="container">
-        <button onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" class="return-button" title="Volver"></button>
+        <button onclick="location.href='https://directorio.wasmer.app//Menu/index.php'" class="return-button" title="Volver"></button>
         <h2>Ubicar por...</h2>
         <div class="submenu">
             <a href="Ubicaciones/Lista/index.php">Listado</a>

@@ -1,45 +1,22 @@
 <?php
-// ============================
-// FIX PARA INFINITYFREE
-// ============================
-ini_set("session.save_path", __DIR__ . "/../tmp");
-if (!file_exists(__DIR__ . "/../tmp")) {
-    mkdir(__DIR__ . "/../tmp", 0777, true);
-}
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// ============================
-// CONTROL DE SESIÓN
-// ============================
-
-// --- Si viene como invitado, siempre forzamos la sesión de invitado ---
+// Configuración para el ingreso como invitado
 if (isset($_GET['guest']) && $_GET['guest'] === 'true') {
     $_SESSION["username"] = "Invitado";
     $_SESSION["rol"] = "invitado";
-} elseif (!isset($_SESSION["username"]) || !isset($_SESSION["rol"])) {
-    // Si no hay sesión ni modo invitado, se redirige al login
-    header("Location: https://cyberjohn.infinityfreeapp.com/index.php");
+}
+
+// Redirección si no hay sesión activa
+if (!isset($_SESSION["username"])) {
+    header("Location: https://directorio.wasmer.app//Iniciar_Sesion.php");
     exit();
 }
 
-// ============================
-// NORMALIZAR ROL
-// ============================
-$roles_validos = ["admin", "usuario", "invitado"];
-$rol_sesion = strtolower(trim($_SESSION['rol']));
 
-if (!in_array($rol_sesion, $roles_validos)) {
-    $_SESSION["username"] = "Invitado";
-    $_SESSION["rol"] = "invitado";
-}
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,7 +27,7 @@ if (!in_array($rol_sesion, $roles_validos)) {
     <link rel="stylesheet" href="Menu.css"> <!-- Enlace al archivo de estilos CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/x-icon" href="iconos/icon2-8 1.png">
+    <link rel="icon" type="image/x-icon" href="https://directorio.wasmer.app//Menu/iconos/icon2-8.png">
 
 </head>
 <body>
@@ -62,27 +39,27 @@ if (!in_array($rol_sesion, $roles_validos)) {
         <button class="icon-btn btn-menu" onclick="toggleSidebarMenu()" title="Menú">
             <img src="iconos/Menu.png" alt="Menú">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/index.php'" title="Inicio">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/index.php'" title="Inicio">
             <img src="iconos/Inicio.png" alt="Inicio">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php'" title="Ubicación">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Submenu.php'" title="Ubicación">
             <img src="iconos/ubicaciones.png" alt="Ubicación">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php'" title="Eventos">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Eventos/index.php'" title="Eventos">
             <img src="iconos/eventos.png" alt="Eventos">
         </button>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php'" title="Donaciones">
+            <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Donaciones/index.php'" title="Donaciones">
                 <img src="iconos/donation.png" alt="Donaciones">
             </button>
         <?php endif; ?>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php'" title="Material Literario">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/Material/index.php'" title="Material Literario">
             <img src="iconos/material.png" alt="Material Literario">
         </button>
-        <button class="icon-btn solo-pc" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php'" title="Biblia">
+        <button class="icon-btn solo-pc" onclick="location.href='https://directorio.wasmer.app//Menu/LiteraturaBiblica/index.php'" title="Biblia">
             <img src="iconos/Biblia.png" alt="Estudio Bíblico">
         </button>
-        <button class="icon-btn btn-sesion" onclick="location.href='https://cyberjohn.infinityfreeapp.com/Menu/logout.php'" title="Cerrar Sesión">
+        <button class="icon-btn btn-sesion" onclick="location.href='https://directorio.wasmer.app//Menu/logout.php'" title="Cerrar Sesión">
             <img src="iconos/Sesion.png" alt="Cerrar Sesión">
         </button>
     </nav>
@@ -91,19 +68,19 @@ if (!in_array($rol_sesion, $roles_validos)) {
     <!-- Menú emergente (sidebar) para celular -->
     <div class="sidebar mobile-only" id="sidebarMenu">
         <h2>Menú</h2>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/index.php">Inicio</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Submenu.php">Ubicación</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Eventos/index.php">Eventos</a>
+        <a href="https://directorio.wasmer.app//Menu/index.php">Inicio</a>
+        <a href="https://directorio.wasmer.app//Menu/Submenu.php">Ubicación</a>
+        <a href="https://directorio.wasmer.app//Menu/Eventos/index.php">Eventos</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Menu/Donaciones/index.php">Donaciones</a>
+            <a href="https://directorio.wasmer.app//Menu/Donaciones/index.php">Donaciones</a>
         <?php endif; ?>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Material/index.php">Material Literario</a>
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
+        <a href="https://directorio.wasmer.app//Menu/Material/index.php">Material Literario</a>
+        <a href="https://directorio.wasmer.app//Menu/LiteraturaBiblica/index.php">Estudio Bíblico</a>
         <?php if ($_SESSION["rol"] !== "invitado") : ?>
-            <a href="https://cyberjohn.infinityfreeapp.com/Cuenta/index.php">Administrar Cuenta</a>
+            <a href="https://directorio.wasmer.app//Cuenta/index.php">Administrar Cuenta</a>
         <?php endif; ?>
 
-        <a href="https://cyberjohn.infinityfreeapp.com/Menu/Copiryt.php">Acerca de</a>
+        <a href="https://directorio.wasmer.app//Menu/Copiryt.php">Acerca de</a>
 
         <button class="close-btn" onclick="toggleSidebarMenu()">Cerrar</button>
     </div>
@@ -124,7 +101,7 @@ if (!in_array($rol_sesion, $roles_validos)) {
     <div class="contenido">
         <header>
             <!-- Dentro del <head>
-            <link rel="icon" type="image/x-icon" href="https://cyberjohn.infinityfreeapp.com/Menu/iconos/icon2-8 1.png"> -->
+        <link rel="icon" type="image/x-icon" href="/Menu/iconos/icon2-8.png"> -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
             <img src="Titulo.png" alt="Bienvenida" class="hero-img">
@@ -170,7 +147,7 @@ if (!in_array($rol_sesion, $roles_validos)) {
     </script>
 
 
-    <!--https://cyberjohn.infinityfreeapp.com/Menu/-->
+    <!--https://directorio.wasmer.app//Menu/-->
     
 
 </body>
