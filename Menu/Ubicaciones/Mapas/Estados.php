@@ -1373,9 +1373,9 @@ $mapa_estados = [
 
 
         /*--Bolivar--*/
-        .Bolivar-1 { top: 17%; left: 53%; }
+        .Bolivar-1 { top: 20%; left: 30%; }
         .Bolivar-2 { top: 12%; left: 53%; }
-        .Bolivar-3 { top: 20%; left: 30%; }
+        .Bolivar-3 { top: 17%; left: 53%; }
         .Bolivar-4 { top: 6%;  left: 62%; }
         .Bolivar-5 { top: 8%;  left: 60%; }
         .Bolivar-6 { top: 78%; left: 74%; }
